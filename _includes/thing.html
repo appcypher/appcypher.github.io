@@ -1,0 +1,3 @@
+{%- assign size = include.size | default: 96 -%}
+{%- capture path -%}doodles/things/{{ include.kind }}.svg{%- endcapture -%}
+<span class="doodle{% if include.class %} {{ include.class }}{% endif %}" style="--size:{{ size }}px">{% include {{ path }} %}</span>

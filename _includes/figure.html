@@ -1,0 +1,9 @@
+<figure class="fig">
+  {%- if include.scene -%}
+    {%- capture path -%}doodles/scenes/{{ include.scene }}.svg{%- endcapture -%}
+    <span class="scene">{% include {{ path }} %}</span>
+  {%- elsif include.src -%}
+    <img src="{{ include.src | relative_url }}" alt="{{ include.alt | default: include.caption | strip_html | escape }}" loading="lazy">
+  {%- endif -%}
+  {%- if include.caption %}<figcaption class="hand">{{ include.caption }}</figcaption>{% endif %}
+</figure>

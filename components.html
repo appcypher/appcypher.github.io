@@ -1,0 +1,57 @@
+---
+title: Components
+permalink: /components/
+noindex: true
+description: Every component of the Cypher Rants theme on one page, for eyeballing changes.
+---
+<div class="rule"><span><span class="mark">components</span></span><span class="muted">every piece on one page · not linked from the nav</span></div>
+
+<section class="spec"><span class="lbl">ink devices</span>
+<p style="display:flex;gap:22px;flex-wrap:wrap;align-items:center;margin:0"><span style="font-size:22px;font-weight:600"><span class="mark">mark</span></span><span>the <span class="hl">highlighter</span></span><span class="sketch" style="padding:6px 14px;font-size:13px">sketch border</span><span class="hand" style="display:inline-block;transform:rotate(-3deg)">margin note</span><span class="cr">cr.</span><span class="stamp stamp-red">RANT</span><span class="stamp stamp-green">ok</span><span class="stamp">DRAFT</span></p>
+</section>
+
+<section class="spec"><span class="lbl">washes and skin tones (theme tokens)</span>
+{% assign washes = "sage,blue,ochre,mauve,clay,gray" | split: "," %}
+<div class="swatches">{% for w in washes %}<span class="swatch"><i style="background:var(--w-{{ w }})"></i>{{ w }}</span>{% endfor %}{% for i in (1..9) %}<span class="swatch"><i style="background:var(--s{{ i }})"></i>s{{ i }}</span>{% endfor %}</div>
+</section>
+
+<section class="spec"><span class="lbl">post card · ghost card</span>
+<div class="grid" style="padding-top:0">
+  <a class="card" href="#top"><span class="card-doodle">{% include doodle.html who="alice" size=112 %}</span><time>sep 20, 2026</time><h3>[post title]</h3><p>[one line about the post]</p><span class="chips"><span class="chip pen">rant</span><span class="chip">[tag]</span></span></a>
+  <div class="card ghost"><span class="hand">drop a .md into _posts/ and it shows up here</span><span class="path">_posts/YYYY-MM-DD-title.md</span></div>
+</div>
+</section>
+
+<section class="spec"><span class="lbl">dialogue</span>
+{% capture d %}
+alice: what goes in `_drafts/`?
+bob: anything you're not ready to publish. jekyll ignores it until you move it.
+alice: and `_posts/`?
+{% endcapture %}{% include dialogue.html text=d %}
+</section>
+
+<section class="spec"><span class="lbl">prose block with a sidenote, a reaction, a sticky note, glyphs, code and a quote</span>
+<div class="prose">
+<p>Write your first post here. This draft stays unpublished until you move it to <code>_posts/YYYY-MM-DD-your-post-title.md</code> with the date you want to publish.</p>
+<p class="aside">← a sidenote: a paragraph ending with <code>{:.aside}</code></p>
+<h2>publishing</h2>
+<p>Three moves, no build step on your machine. Then alice puts the :key: in an :envelope: and :eve: is on the wire :ear:.</p>
+{% include react.html who="bob" say="three? that's it?" %}
+<ol><li>Write Markdown in <code>_drafts/</code>.</li><li>Move it into <code>_posts/</code> with a dated filename.</li><li>Push <code>main</code>. GitHub Pages builds and deploys it.</li></ol>
+<blockquote><p>note: the <code>cover</code> key in front matter picks which doodle sits on the post card. leave it out and the site uses the author's.</p></blockquote>
+<pre><code>---
+title: Your first rant
+description: Replace this with a short introduction to your post.
+cover: bob
+---</code></pre>
+<blockquote><p>Keep the blog personal, readable, and easy to publish to using Markdown.</p></blockquote>
+{% include figure.html scene="empty-state" caption="fig. 1 — a full-width figure breaks out of the text column" %}
+</div>
+</section>
+
+<section class="spec"><span class="lbl">things</span>
+{% assign kinds = "envelope,key,lock,unlock,shield,laptop,terminal,server,cloud,database,doc,folder,box,sandbox,cube,vm,process,git,bug,gear,clock,bulb,coffee,fire,check,cross,question" | split: "," %}
+<div class="things">{% for k in kinds %}{% include thing.html kind=k size=72 %}{% endfor %}</div>
+</section>
+
+{% include cast-strip.html limit=24 %}

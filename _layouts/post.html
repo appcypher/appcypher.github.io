@@ -1,8 +1,23 @@
 ---
 layout: default
 ---
+{%- assign cover = page.cover | default: "stephen" -%}
+{%- assign words = content | strip_html | number_of_words -%}
+{%- assign minutes = words | divided_by: 200 | plus: 1 -%}
 <article class="article">
-  <a class="back" href="{{ '/' | relative_url }}">← All writing</a>
-  <header class="article-heading"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%B %d, %Y' }}</time><h1>{{ page.title | escape }}</h1>{% if page.description %}<p>{{ page.description | escape }}</p>{% endif %}</header>
+  <a class="back pen" href="{{ '/' | relative_url }}"><svg viewBox="0 0 22 10" aria-hidden="true"><path d="M21 5c-6-1-12-1-18 0M8 1L3 5l5 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>all writing</a>
+  <header class="article-head">
+    <div class="article-title">
+      <p class="meta"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%b %-d, %Y' | downcase }}</time>{% if page.status %} · <span class="hl">{{ page.status }}</span>{% endif %} · {{ minutes }} min</p>
+      <h1>{{ page.title | escape }}</h1>
+      {% if page.description %}<p class="lede">{{ page.description | escape }}</p>{% endif %}
+    </div>
+    <div class="article-cover">{% include doodle.html who=cover size=150 mood=page.mood %}{% if page.rant %}<span class="stamp stamp-red">RANT</span>{% endif %}</div>
+  </header>
   <div class="prose">{{ content }}</div>
+  <nav class="post-nav" aria-label="Post navigation">
+    {% if page.previous %}<a href="{{ page.previous.url | relative_url }}">← {{ page.previous.title | escape }}</a>{% else %}<span class="muted">← this is the first one</span>{% endif %}
+    <span class="byline">{% include doodle.html who="stephen" size=56 %}<span>written by <a href="{{ '/about/' | relative_url }}">Stephen Akinyemi</a></span></span>
+    {% if page.next %}<a href="{{ page.next.url | relative_url }}">{{ page.next.title | escape }} →</a>{% else %}<span class="muted">nothing newer yet</span>{% endif %}
+  </nav>
 </article>

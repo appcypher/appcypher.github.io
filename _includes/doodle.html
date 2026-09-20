@@ -1,0 +1,4 @@
+{%- assign who = include.who | default: "stephen" -%}
+{%- assign size = include.size | default: 120 -%}
+{%- capture path -%}doodles/people/{{ who }}{% if include.mood == "rant" %}-rant{% endif %}.svg{%- endcapture -%}
+<span class="doodle{% if include.class %} {{ include.class }}{% endif %}" style="--size:{{ size }}px">{% include {{ path }} %}</span>

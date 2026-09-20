@@ -2,4 +2,11 @@
 title: Page not found
 permalink: /404.html
 ---
-<div class="article-heading"><p class="eyebrow">404</p><h1>This page wandered off.</h1></div><p><a href="{{ '/' | relative_url }}">Back to the writing →</a></p>
+<div class="rule"><span><span class="mark">404</span></span><span class="muted">this page wandered off</span></div>
+<section class="lost">
+  {% include thing.html kind="signpost" size=160 %}
+  <div>
+    <h1>This page wandered off.</h1>
+    <p><a class="pen" href="{{ '/' | relative_url }}">← back to the writing</a></p>
+  </div>
+</section>

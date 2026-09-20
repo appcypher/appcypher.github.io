@@ -1,19 +1,26 @@
 ---
 layout: default
 ---
-<section class="intro">
-  <p class="eyebrow">APPCYPHER / PERSONAL BLOG</p>
-  <h1>Cypher<br><em>Rants.</em></h1>
-  <p class="intro-description">Notes on building things, lessons learned, and the occasional rant. By <a href="{{ '/about/' | relative_url }}">Stephen Akinyemi</a>.</p>
-</section>
-<section aria-labelledby="writing-title" class="writing">
-  <div class="section-heading"><h2 id="writing-title">The writing</h2><span>{{ site.posts | size }} posts</span></div>
-  {% for post in site.posts %}
-  <article class="post-row">
-    <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%b %d, %Y' }}</time>
-    <div><h3><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h3>{% if post.description %}<p>{{ post.description | escape }}</p>{% endif %}</div>
-  </article>
-  {% else %}
-  <div class="empty"><span class="empty-number" aria-hidden="true">01</span><div><h3>The first rant is still brewing.</h3><p>Nothing published yet. Come back soon.</p></div></div>
-  {% endfor %}
-</section>
+{%- assign n = site.posts | size -%}
+<div class="rule"><span><span class="mark">the writing</span></span><span class="muted">{{ n }} {% if n == 1 %}post{% else %}posts{% endif %} · newest first</span></div>
+{%- if n == 0 %}
+<figure class="fig empty-fig">
+  <span class="scene">{% include doodles/scenes/empty-state.svg %}</span>
+  <figcaption class="muted">nothing published yet. come back soon.</figcaption>
+</figure>
+{%- endif %}
+<div class="grid">
+  {%- for post in site.posts %}
+  {%- assign cover = post.cover | default: "stephen" %}
+  <a class="card" href="{{ post.url | relative_url }}">
+    <span class="card-doodle">{% include doodle.html who=cover size=112 mood=post.mood %}</span>
+    <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%b %-d, %Y' | downcase }}</time>
+    <h3>{{ post.title | escape }}</h3>
+    {% if post.description %}<p>{{ post.description | escape }}</p>{% endif %}
+    {%- if post.tags.size > 0 or post.rant %}<span class="chips">{% if post.rant %}<span class="chip pen">rant</span>{% endif %}{% for t in post.tags %}<span class="chip">{{ t }}</span>{% endfor %}</span>{% endif %}
+  </a>
+  {%- endfor %}
+  <div class="card ghost"><span class="hand">drop a .md into _posts/ and it shows up here</span><span class="path">_posts/YYYY-MM-DD-title.md</span></div>
+</div>
+<div class="push"></div>
+{% include cast-strip.html limit=6 %}

@@ -1,12 +1,15 @@
 title: Cypher Rants
-description: The personal blog of appcypher.
+description: Notes on building things, lessons learned, and the occasional rant. By Stephen Akinyemi (appcypher).
 url: https://appcypher.github.io
 baseurl: ""
 author: appcypher
 markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
 permalink: /posts/:title/
 timezone: Africa/Lagos
-exclude: [Gemfile, Gemfile.lock, README.md, vendor, preview, .bundle]
+exclude: [Gemfile, Gemfile.lock, README.md, DESIGN.md, tools, vendor, preview, .bundle]
 defaults:
   - scope:
       path: ""
