@@ -1,0 +1,18 @@
+---
+layout: default
+---
+<section class="intro">
+  <p class="eyebrow">APPCYPHER / PERSONAL BLOG</p>
+  <h1>Cypher<br><em>Rants.</em></h1>
+</section>
+<section aria-labelledby="writing-title" class="writing">
+  <div class="section-heading"><h2 id="writing-title">The writing</h2><span>{{ site.posts | size }} posts</span></div>
+  {% for post in site.posts %}
+  <article class="post-row">
+    <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%b %d, %Y' }}</time>
+    <div><h3><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h3>{% if post.description %}<p>{{ post.description | escape }}</p>{% endif %}</div>
+  </article>
+  {% else %}
+  <div class="empty"><span class="empty-number" aria-hidden="true">01</span><div><h3>The first rant is still brewing.</h3><p>Nothing published yet. Come back soon.</p></div></div>
+  {% endfor %}
+</section>
