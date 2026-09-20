@@ -721,8 +721,8 @@ def lightning(pen, p0, p1, color=RED, w=2.2):
     return pen.line(pts, w=w, color=color, jitter=0.3, step=40, dbl=False)
 
 def bubble(pen, x, y, w, h, tail="bl", kind="round", fill=PAPER, color="currentColor", to=None, gap=6):
-    """A speech bubble. to=(x, y) aims the tail at that point (the speaker's chin) and overrides `tail`.
-    The tail is spliced into the bubble's own outline, so body and tail are one closed, equally wobbly path."""
+    """A speech bubble: body + a short wedge tail laid over the outline (the wedge's fill hides the outline under it).
+    to=(x, y) puts the wedge on the edge nearest that point (the speaker's chin) and points the tip at it; otherwise `tail` picks a fixed corner."""
     cx, cy, rx, ry = x + w/2, y + h/2, w/2, h/2
     if kind == "spiky":
         pts = []
@@ -736,7 +736,8 @@ def bubble(pen, x, y, w, h, tail="bl", kind="round", fill=PAPER, color="currentC
         body = pen.fill(pts, fill, dx=0, dy=0, jitter=3) + pen.line(pts, closed=True, w=1.5, color=color, jitter=3.2, step=9)
         if to is not None:
             dx, dy = to[0] - cx, to[1] - cy; L = math.hypot(dx, dy) or 1
-            ex, ey = cx + rx*math.cos(math.atan2(dy/ry, dx/rx)), cy + ry*math.sin(math.atan2(dy/ry, dx/rx))
+            t = math.atan2(dy/ry, dx/rx)
+            ex, ey = cx + rx*math.cos(t), cy + ry*math.sin(t)
             for k, r in ((0.35, 6), (0.7, 3.5)):
                 px, py = ex + (to[0]-gap*dx/L - ex)*k, ey + (to[1]-gap*dy/L - ey)*k
                 body += pen.line(ell(px, py, r, r*0.85, n=8), closed=True, w=1.3, color=color)
@@ -745,38 +746,38 @@ def bubble(pen, x, y, w, h, tail="bl", kind="round", fill=PAPER, color="currentC
         elif tail == "br":
             body += pen.line(ell(x+w*0.8, y+h+10, 6, 5, n=8), closed=True, w=1.3, color=color) + pen.line(ell(x+w*0.88, y+h+24, 3.5, 3, n=8), closed=True, w=1.2, color=color)
         return body
-    n = 36
-    sq = 1.0 if kind == "rect" else 3.2
-    if kind == "rect":
-        pts = resample(rect(x, y, w, h), 8, True)
+    pts = rect(x, y, w, h) if kind == "rect" else ell(cx, cy, rx, ry, n=20, sq=3.2)
+    body = pen.fill(pts, fill, dx=0, dy=0, jitter=0.8) + pen.line(pts, closed=True, w=1.5, color=color)
+    if to is not None:
+        dx, dy = to[0] - cx, to[1] - cy
+        if kind == "rect":
+            k = min(rx / (abs(dx) or 1e-6), ry / (abs(dy) or 1e-6))
+            ex, ey = cx + dx*k, cy + dy*k
+        else:
+            t = math.atan2(dy/ry, dx/rx)
+            ex, ey = cx + rx*math.cos(t), cy + ry*math.sin(t)
+        vx, vy = to[0] - ex, to[1] - ey
+        L = math.hypot(vx, vy) or 1
+        ux, uy = vx/L, vy/L
+        px, py = -uy, ux
+        length = max(10, min(22, L - gap))
+        b1 = (ex + px*14 - ux*3, ey + py*14 - uy*3)
+        b2 = (ex - px*14 - ux*3, ey - py*14 - uy*3)
+        tip = (ex + ux*length - px*7, ey + uy*length - py*7)
+        tp = [b1, tip, b2]
     else:
-        pts = ell(cx, cy, rx, ry, n=n, sq=sq)
-    if to is None:
-        tails = {"bl": (x+w*0.16, y+h+18), "br": (x+w*0.84, y+h+18), "l": (x-18, y+h*0.62), "r": (x+w+18, y+h*0.62), "tl": (x+w*0.16, y-18), "none": None}
-        to = tails.get(tail); gap = 0
-    if to is None:
-        return pen.fill(pts, fill, dx=0, dy=0, jitter=0.8) + pen.line(pts, closed=True, w=1.5, color=color)
-    dx, dy = to[0] - cx, to[1] - cy
-    L = math.hypot(dx, dy) or 1
-    ux, uy = dx/L, dy/L
-    tip = (to[0] - ux*gap, to[1] - uy*gap)
-    # keep the tail short: it starts at the edge, never more than ~0.9 of the bubble height long
-    def ang(p): return math.atan2((p[1]-cy)/ry, (p[0]-cx)/rx)
-    t = math.atan2(dy/ry, dx/rx)
-    def adiff(a, b): return abs((a - b + math.pi) % (2*math.pi) - math.pi)
-    delta = 0.36
-    keep = [p for p in pts if adiff(ang(p), t) > delta]
-    # rotate so the gap is at the end of the list
-    i0 = next(i for i, p in enumerate(pts) if adiff(ang(p), t) <= delta)
-    ordered = pts[i0:] + pts[:i0]
-    body = [p for p in ordered if adiff(ang(p), t) > delta]
-    b1 = min(body, key=lambda p: adiff(ang(p), t - delta)); b2 = min(body, key=lambda p: adiff(ang(p), t + delta))
-    # a swooped tail: one side bows out, the other is straighter, the tip is a cusp
-    px, py = -uy, ux
-    m1 = (b1[0] + (tip[0]-b1[0])*0.55 + px*5, b1[1] + (tip[1]-b1[1])*0.55 + py*5)
-    m2 = (b2[0] + (tip[0]-b2[0])*0.5 - px*1.5, b2[1] + (tip[1]-b2[1])*0.5 - py*1.5)
-    path = body + [m2, tip, tip, m1]
-    return pen.fill(path, fill, dx=0, dy=0, jitter=0.8) + pen.line(path, closed=True, w=1.5, color=color)
+        tails = {
+            "bl": [(x+w*0.25, y+h-2), (x+w*0.16, y+h+18), (x+w*0.4, y+h-2)],
+            "br": [(x+w*0.75, y+h-2), (x+w*0.84, y+h+18), (x+w*0.6, y+h-2)],
+            "l": [(x+2, y+h*0.5), (x-18, y+h*0.62), (x+2, y+h*0.72)],
+            "r": [(x+w-2, y+h*0.5), (x+w+18, y+h*0.62), (x+w-2, y+h*0.72)],
+            "tl": [(x+w*0.25, y+2), (x+w*0.16, y-18), (x+w*0.4, y+2)],
+            "none": None,
+        }
+        tp = tails.get(tail)
+    if tp:
+        body += pen.fill(tp, fill, dx=0, dy=0, jitter=0.3) + pen.line(tp, w=1.5, color=color, jitter=0.4, step=30, dbl=False)
+    return body
 
 def text(x, y, s, size=13, font="mono", color="currentColor", anchor="start", weight=400, rot=0):
     ff = "'IBM Plex Mono', monospace" if font == "mono" else "Caveat, cursive"

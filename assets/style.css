@@ -153,15 +153,15 @@ svg{overflow:visible}
 .turn>div{display:flex;flex-direction:column;gap:2px;align-items:flex-start}
 .turn.r>div{align-items:flex-end}
 .turn .who{font-size:12px;color:var(--muted)}
-.bubble{position:relative;padding:10px 18px;font-family:var(--hand);font-size:20px;font-weight:500;line-height:1.25;max-width:360px;background:var(--paper);margin:0}
+.bubble{position:relative;padding:10px 18px;font-family:var(--hand);font-size:20px;font-weight:500;line-height:1.25;max-width:360px;background:var(--paper);margin:0;border-radius:14px 18px 16px 20px/18px 14px 20px 16px}
 .bubble code{font-size:.7em;vertical-align:1px}
-/* drawn tails (see _includes/tail.html): the fill sits 3px inside the border and hides it; only the two curved sides are stroked */
-.tail{position:absolute;overflow:visible;pointer-events:none}
+/* drawn tails (see _includes/tail.html): a wedge whose base sits 4px inside the bubble so its fill hides the border; only the two sides are stroked */
+.tail{position:absolute;overflow:visible;pointer-events:none;width:26px;height:24px}
 .tail-fill{fill:var(--paper);stroke:none}
 .tail-line{fill:none;stroke:var(--ink);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
-.tail-left{width:24px;height:22px;left:-21px;top:calc(50% - 11px)}
-.tail-right{width:24px;height:22px;right:-21px;top:calc(50% - 11px);transform:scaleX(-1)}
-.tail-up{width:22px;height:24px;top:-21px;left:calc(50% - 11px)}
+.tail-left{left:-22px;top:calc(50% - 12px)}
+.tail-right{right:-22px;top:calc(50% - 12px);transform:scaleX(-1)}
+.tail-up{top:-22px;left:calc(50% - 13px);transform:rotate(90deg)}
 .post-nav{clear:both;border-top:1.5px solid var(--line);padding-top:24px;display:flex;justify-content:space-between;align-items:center;gap:20px;font-size:16px;flex-wrap:wrap}
 .post-nav a{text-decoration:none;min-height:32px;display:inline-flex;align-items:center}
 .byline{display:flex;align-items:center;gap:12px}
@@ -219,7 +219,7 @@ svg{overflow:visible}
   .prose{width:auto}
   .prose .aside,.prose .react{float:none;width:auto;margin:6px 0 20px}
   .prose .react{flex-direction:row;align-items:center;gap:12px}
-  .prose .react .tail-up{top:calc(50% - 11px);left:-21px;width:24px;height:22px;transform:rotate(-90deg)}
+  .prose .react .tail-up{top:calc(50% - 12px);left:-22px;transform:none}
   .fig{width:100%}
   .about{grid-template-columns:1fr}
   .about-text h1{font-size:34px}

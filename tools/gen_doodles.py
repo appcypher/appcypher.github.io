@@ -71,8 +71,8 @@ def main():
     s += D.place(D.face(p, look=(-1.5, 0), **b), 740, 40, 1.5)
     s += D.arrow(p, (250, 140), (730, 140), w=2.2) + D.text(490, 118, "any update?", 24, "hand", D.PENC, "middle")
     # bubbles sit under each speaker and aim their tail at the chin (face placed at 40/740, scale 1.5 → chin ≈ x+90, y+188)
-    s += D.bubble(p, 70, 222, 210, 58, kind="round", to=(132, 192)) + D.text(175, 258, "is the first rant out yet?", 19, "hand", "currentColor", "middle")
-    s += D.bubble(p, 690, 222, 240, 58, kind="round", to=(828, 192)) + D.text(810, 258, "still brewing. come back soon.", 19, "hand", "currentColor", "middle")
+    s += D.bubble(p, 60, 232, 210, 50, kind="round", to=(132, 192)) + D.text(165, 264, "is the first rant out yet?", 19, "hand", "currentColor", "middle")
+    s += D.bubble(p, 690, 232, 240, 50, kind="round", to=(828, 192)) + D.text(810, 264, "still brewing. come back soon.", 19, "hand", "currentColor", "middle")
     s += D.stamp(p, 420, 200, "0 posts", "currentColor", rot=-6, size=13)
     open(os.path.join(OUT, "scenes", "empty-state.svg"), "w").write(wrap(s, f"0 0 {W} {H}"))
 
