@@ -44,7 +44,7 @@ Doodle SVGs are inlined (or loaded as `<svg><use>`), never `<img>`, so `currentC
 
 ## Type, grain, devices
 
-- IBM Plex Mono (400/500/600 + italics) for everything, body 17px/1.7, prose max-width ~68ch. Caveat 500 for handwriting only (margin notes, figure captions, cast names). Google Fonts css2 with `display=swap`. Lowercase UI labels.
+- Patrick Hand for the page text (body 18px/1.55, prose 19px, headings at weight 400), Caveat 500 for the annotation hand (margin notes, figure captions, cast names, speech bubbles), IBM Plex Mono for typed details only (code, dates, meta, chips, stamps, the `cr.` mark). Google Fonts css2 with `display=swap`. Lowercase UI labels.
 - Paper grain on both themes: `body::after`, `position: fixed`, full viewport, `pointer-events: none`, background = inline SVG data URI with `feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="3" stitchTiles="stitch"` + `feColorMatrix type="saturate" values="0"`, `mix-blend-mode: overlay`, opacity ~.35.
 - The five ink devices (reuse, do not invent more):
   1. `.mark` — inverted box: `background: var(--mark-bg); color: var(--mark-fg); padding: 0 .3em; box-decoration-break: clone`. Used on section labels, post h2s, the "cr." brand mark (rotated −3°).
