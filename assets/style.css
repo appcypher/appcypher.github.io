@@ -144,19 +144,19 @@ svg{overflow:visible}
 .prose .aside,.prose .react{float:right;clear:right;width:240px;margin:0 -284px 18px 0;font-family:var(--hand);font-size:23px;font-weight:500;line-height:1.15;color:var(--pen)}
 .prose .react{display:flex;flex-direction:column;align-items:center;gap:8px;font-family:inherit;color:inherit}
 .prose .react .bubble{font-size:18px;padding:6px 12px;position:relative;background:var(--paper)}
-.prose .react .bubble::before{content:"";position:absolute;left:18px;top:-9px;width:10px;height:10px;background:var(--paper);border-left:1.5px solid var(--ink);border-top:1.5px solid var(--ink);transform:rotate(45deg)}
+.prose .react .bubble::before{content:"";position:absolute;left:calc(50% - 6px);top:-9px;width:10px;height:10px;background:var(--paper);border-left:1.5px solid var(--ink);border-top:1.5px solid var(--ink);transform:rotate(45deg)}
 .fig{margin:8px 0 28px;width:924px;max-width:none;clear:both;display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 0 10px;border-top:1.5px solid var(--line);border-bottom:1.5px solid var(--line)}
 .fig img{max-width:100%;height:auto}
 .fig figcaption{font-size:21px}
 .dlg{display:flex;flex-direction:column;gap:18px;margin:6px 0 26px;clear:both}
-.turn{display:flex;align-items:flex-start;gap:14px}
+.turn{display:flex;align-items:center;gap:14px}
 .turn.r{flex-direction:row-reverse}
 .turn>div{display:flex;flex-direction:column;gap:2px;align-items:flex-start}
 .turn.r>div{align-items:flex-end}
 .turn .who{font-size:12px;color:var(--muted)}
 .bubble{position:relative;padding:10px 18px;font-family:var(--hand);font-size:20px;font-weight:500;line-height:1.25;max-width:360px;background:var(--paper);margin:0}
 .bubble code{font-size:.7em;vertical-align:1px}
-.turn .bubble::before{content:"";position:absolute;top:18px;left:-9px;width:12px;height:12px;background:var(--paper);border-left:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);transform:rotate(45deg)}
+.turn .bubble::before{content:"";position:absolute;top:calc(50% - 7px);left:-9px;width:12px;height:12px;background:var(--paper);border-left:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);transform:rotate(45deg)}
 .turn.r .bubble::before{left:auto;right:-9px;border-left:0;border-bottom:0;border-right:1.5px solid var(--ink);border-top:1.5px solid var(--ink)}
 .post-nav{clear:both;border-top:1.5px solid var(--line);padding-top:24px;display:flex;justify-content:space-between;align-items:center;gap:20px;font-size:16px;flex-wrap:wrap}
 .post-nav a{text-decoration:none;min-height:32px;display:inline-flex;align-items:center}

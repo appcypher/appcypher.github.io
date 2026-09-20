@@ -720,7 +720,8 @@ def lightning(pen, p0, p1, color=RED, w=2.2):
     pts = [p0, (x0+(x1-x0)*0.4+(y1-y0)*0.12, y0+(y1-y0)*0.4-(x1-x0)*0.12), (x0+(x1-x0)*0.55-(y1-y0)*0.12, y0+(y1-y0)*0.55+(x1-x0)*0.12), p1]
     return pen.line(pts, w=w, color=color, jitter=0.3, step=40, dbl=False)
 
-def bubble(pen, x, y, w, h, tail="bl", kind="round", fill=PAPER, color="currentColor"):
+def bubble(pen, x, y, w, h, tail="bl", kind="round", fill=PAPER, color="currentColor", to=None, gap=8):
+    """to=(x, y): aim the tail at that point (the speaker's chin); it overrides `tail`"""
     if kind == "spiky":
         pts = []
         n = 18
@@ -744,6 +745,20 @@ def bubble(pen, x, y, w, h, tail="bl", kind="round", fill=PAPER, color="currentC
         elif tail == "br":
             t = pen.line(ell(x+w*0.8, y+h+10, 6, 5, n=8), closed=True, w=1.3, color=color) + pen.line(ell(x+w*0.88, y+h+24, 3.5, 3, n=8), closed=True, w=1.2, color=color)
         return body + t
+    if to is not None and kind != "thought":
+        cx, cy = x + w/2, y + h/2
+        rx, ry = w/2, h/2
+        dx, dy = to[0] - cx, to[1] - cy
+        L = math.hypot(dx, dy) or 1
+        t = math.atan2(dy / ry, dx / rx)
+        base = []
+        for s in (-0.26, 0.26):
+            ex, ey = cx + rx*math.cos(t+s), cy + ry*math.sin(t+s)
+            base.append((cx + (ex-cx)*0.9, cy + (ey-cy)*0.9))
+        tip = (to[0] - dx/L*gap, to[1] - dy/L*gap)
+        tp = [base[0], tip, base[1]]
+        body += pen.fill(tp, fill, dx=0, dy=0, jitter=0.3) + pen.line(tp, w=1.5, color=color, jitter=0.4, step=30, dbl=False)
+        return body
     tails = {
         "bl": [(x+w*0.25, y+h-2), (x+w*0.16, y+h+18), (x+w*0.4, y+h-2)],
         "br": [(x+w*0.75, y+h-2), (x+w*0.84, y+h+18), (x+w*0.6, y+h-2)],

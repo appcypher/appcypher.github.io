@@ -78,7 +78,7 @@ Doodle SVGs are inlined (or loaded as `<svg><use>`), never `<img>`, so `currentC
 - `Pen(seed, style, rough)`. `style` 1–6: glyph · line · wash · pencil · ink · cut-paper. `rough` 0–3.6: 0 ruler, 0.3 steady, 0.6 careful, 1 default, 1.4 quick, 2 shaky, 2.8 rattled, 3.6 caffeine. Same seed = same drawing, so a character is reproducible.
 - `face(pen, head, skin, hair_, hair_color, eye, brow, nose_, mouth_, fh, extra, wash, back, look)` — 8 heads, 9 skin tones, 31 hair/headwear, 17 eyes, 8 brows, 8 noses, 13 mouths, 8 facial hair, 20 accessories/marks, 8 backings (blob, blob2, square, tall, ring, hatch, scribble, none). See the people sheet for every option by name.
 - `obj(pen, kind, wash)` — 66 things (envelope … question). See the things sheet.
-- Connectors and marks: `arrow` (curve, dashed, both, head), `lightning`, `bubble` (round / rect / spiky / thought, tails bl br l r tl), `text`, `stamp`, `pin_num`, `tape`, `circle_emph`, `crossout`, `underline_scribble`, `bracket`, `sparkles`, `paperclip`, `tack`. Scenes are composed with `place(inner, x, y, scale)` inside one `<svg>`.
+- Connectors and marks: `arrow` (curve, dashed, both, head), `lightning`, `bubble` (round / rect / spiky / thought; pass `to=(x, y)` — the speaker's chin — and the tail is aimed at it, otherwise a fixed tail bl br l r tl), `text`, `stamp`, `pin_num`, `tape`, `circle_emph`, `crossout`, `underline_scribble`, `bracket`, `sparkles`, `paperclip`, `tack`. Scenes are composed with `place(inner, x, y, scale)` inside one `<svg>`.
 - Roughness rules: 0–0.6 when the drawing carries information (stacks, sequences, tables); 1 is the house hand; 1.4–2 for emotion, following the character's state; 2.8+ once per post; never mix levels inside one figure; text is never rough.
 - Style rules: glyph for inline and ≤32px; line at 48px; wash from 72px up (the blog default); ink and cut-paper for covers and large figures; keep one level per page.
 
@@ -91,3 +91,5 @@ Data:
 ## Guardrails
 
 Both themes, 390px mobile, and a post that uses every convention above. Do not invent posts or characters beyond `cast.yml`; placeholders stay bracketed. Do not display an email or add a contact form. GPG-sign commits.
+
+Rule for every bubble, SVG or HTML: the tail points at the speaker's face. In the engine that is `to=`; in the page CSS the dialogue tail sits at the bubble's vertical centre beside the face and the margin-reaction tail is centred under the face.

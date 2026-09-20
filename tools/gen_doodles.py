@@ -70,8 +70,9 @@ def main():
     s = D.place(D.face(p, look=(1.5, 0), **a), 40, 40, 1.5)
     s += D.place(D.face(p, look=(-1.5, 0), **b), 740, 40, 1.5)
     s += D.arrow(p, (250, 140), (730, 140), w=2.2) + D.text(490, 118, "any update?", 24, "hand", D.PENC, "middle")
-    s += D.bubble(p, 30, 236, 200, 46, "tl", "round") + D.text(130, 268, "is the first rant out yet?", 19, "hand", "currentColor", "middle")
-    s += D.bubble(p, 700, 236, 230, 46, "tl", "round") + D.text(815, 268, "still brewing. come back soon.", 19, "hand", "currentColor", "middle")
+    # bubbles sit under each speaker and aim their tail at the chin (face placed at 40/740, scale 1.5 → chin ≈ x+90, y+188)
+    s += D.bubble(p, 60, 240, 200, 46, kind="round", to=(130, 190)) + D.text(160, 272, "is the first rant out yet?", 19, "hand", "currentColor", "middle")
+    s += D.bubble(p, 700, 240, 230, 46, kind="round", to=(830, 190)) + D.text(815, 272, "still brewing. come back soon.", 19, "hand", "currentColor", "middle")
     s += D.stamp(p, 420, 200, "0 posts", "currentColor", rot=-6, size=13)
     open(os.path.join(OUT, "scenes", "empty-state.svg"), "w").write(wrap(s, f"0 0 {W} {H}"))
 
