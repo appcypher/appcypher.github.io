@@ -76,9 +76,10 @@ svg{overflow:visible}
 .tog{display:inline-flex;align-items:center;gap:7px;font-size:15px;padding:7px 14px;background:transparent;cursor:pointer;align-self:flex-start;min-height:40px}
 .tog-icon{width:14px;height:14px;display:inline-block}
 .tog-icon svg{width:14px;height:14px;display:block}
-.rail-foot{margin-top:auto;display:flex;flex-direction:column;gap:6px;font-size:15px;color:var(--muted)}
-.socials{display:flex;gap:18px}
-.socials a{text-decoration:none;min-height:32px;display:inline-flex;align-items:center}
+.rail-foot{margin-top:auto;display:flex;flex-direction:column;gap:12px;font-size:15px;color:var(--muted)}
+.socials{display:flex;flex-wrap:wrap;gap:10px}
+.socials a{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;min-height:36px;border:1.5px solid var(--ink);border-radius:var(--sketch);color:var(--ink);text-decoration:none;font-size:15px;line-height:1.2}
+.socials a:hover{color:var(--pen);border-color:var(--pen)}
 .main{flex:1;min-width:0;padding:52px 64px 48px;display:flex;flex-direction:column;gap:36px}
 .push{flex:1}
 
