@@ -47,10 +47,10 @@ def main():
         kw = recipe(c)
         rough = float(c.get("rough", 1))
         n = FRAMES if c["name"] in boilers else 1
-        open(os.path.join(OUT, "people", f'{c["name"]}.svg'), "w").write(wrap(D.boil(lambda pen: D.face(pen, **kw), seed_of(c["name"]), n, rough=rough)))
+        open(os.path.join(OUT, "people", f'{c["name"]}.svg'), "w").write(wrap(D.boil_face(seed_of(c["name"]), n, rough=rough, **kw)))
         # a furious variant for the rant marker
         kw2 = dict(kw); kw2.update(eye="oval", brow="angry", mouth_="shout", extra=tuple(kw["extra"]) + ("cloud", "bangs", "steam"))
-        open(os.path.join(OUT, "people", f'{c["name"]}-rant.svg'), "w").write(wrap(D.boil(lambda pen: D.face(pen, **kw2), seed_of(c["name"]) + 1, n, rough=2.2)))
+        open(os.path.join(OUT, "people", f'{c["name"]}-rant.svg'), "w").write(wrap(D.boil_face(seed_of(c["name"]) + 1, n, rough=2.2, **kw2)))
 
     # things
     for i, k in enumerate(THINGS):
@@ -71,8 +71,8 @@ def main():
     W, H = 960, 300
     a = recipe(data["cast"][0]); b = recipe(data["cast"][1])
     p = Pen(77, 3)
-    s = D.place(D.boil(lambda pen: D.face(pen, look=(1.5, 0), **a), 101, FRAMES), 40, 40, 1.5)
-    s += D.place(D.boil(lambda pen: D.face(pen, look=(-1.5, 0), **b), 202, FRAMES), 740, 40, 1.5)
+    s = D.place(D.boil_face(101, FRAMES, look=(1.5, 0), **a), 40, 40, 1.5)
+    s += D.place(D.boil_face(202, FRAMES, look=(-1.5, 0), **b), 740, 40, 1.5)
     s += D.arrow(p, (250, 140), (730, 140), w=2.2) + D.text(490, 118, "any update?", 24, "hand", D.PENC, "middle")
     s += D.bubble(p, 60, 232, 210, 50, kind="round", to=(132, 192)) + D.text(165, 264, "is the first rant out yet?", 19, "hand", "currentColor", "middle")
     s += D.bubble(p, 690, 232, 240, 50, kind="round", to=(828, 192)) + D.text(810, 264, "still brewing. come back soon.", 19, "hand", "currentColor", "middle")

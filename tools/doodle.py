@@ -185,6 +185,14 @@ def boil(make, seed, n=3, style=3, rough=1.0, amount=0.35):
         return make(Pen(seed, style, rough=rough))
     return "".join(f'<g class="f f{k}">{make(Pen(seed, style, rough=rough, boil_seed=seed + 1000 + k*17, boil=amount))}</g>' for k in range(n))
 
+def boil_face(seed, n=3, style=3, rough=1.0, amount=0.35, **kw):
+    """A face whose line boils while its backing (blob, ring, hatch, square) stays still: the backing is drawn once with
+    the base pen, then the face is inked n times without a backing. kw are face() arguments."""
+    back = kw.pop("back", "blob"); rot = kw.pop("back_rot", 0)
+    wash = kw.get("wash", "sage")
+    still = backing(Pen(seed, style, rough=rough), back, wash, rot)
+    return still + boil(lambda pen: face(pen, back="none", **kw), seed + 5, n, style, rough, amount)
+
 def place(inner, x, y, s=1.0, rot=0):
     r = f" rotate({rot} 60 64)" if rot else ""
     return f'<g transform="translate({x} {y}) scale({s}){r}">{inner}</g>'

@@ -58,9 +58,9 @@ def recipe(c): return dict(head=c["head"], skin=c["skin"], hair_=c["hair"], hair
 
 p = Pen(seed=7, style=3, rough=1.0)          # style 3 = wash, the site default; rough 0 for diagrams, 2+ for panic
 W, H = 960, 300
-# faces and objects "boil" (three inkings cycled by CSS) — wrap only those in D.boil; arrows, words, bubbles and stamps stay still
-s  = D.place(D.boil(lambda pen: D.face(pen, **recipe(cast["alice"]), look=(1.5, 0)), 101), 40, 40, 1.5)   # scale 1.5 → chin at about (x+90, y+188)
-s += D.place(D.boil(lambda pen: D.face(pen, **recipe(cast["bob"]), look=(-1.5, 0)), 202), 740, 40, 1.5)
+# faces and objects "boil" (three inkings cycled by CSS): D.boil_face for people (their backing stays still), D.boil for objects; arrows, words, bubbles and stamps stay still
+s  = D.place(D.boil_face(101, **recipe(cast["alice"]), look=(1.5, 0)), 40, 40, 1.5)   # scale 1.5 → chin at about (x+90, y+188)
+s += D.place(D.boil_face(202, **recipe(cast["bob"]), look=(-1.5, 0)), 740, 40, 1.5)
 s += D.arrow(p, (250, 140), (730, 140), w=2.2) + D.place(D.boil(lambda pen: D.obj(pen, "key", "ochre"), 303), 460, 82, 0.9)
 s += D.text(490, 118, "here's the key", 24, "hand", D.PENC, "middle")            # "hand" = Caveat, "mono" = Plex Mono
 s += D.bubble(p, 60, 232, 210, 50, to=(132, 192)) + D.text(165, 264, "don't lose it.", 19, "hand", "currentColor", "middle")
@@ -68,7 +68,7 @@ s += D.stamp(p, 420, 200, "ok", D.GREEN, rot=-6, size=13)
 open("_includes/doodles/scenes/key-exchange.svg", "w").write(f'<svg viewBox="0 0 {W} {H}" aria-hidden="true" focusable="false">{s}</svg>\n')
 ```
 
-Pieces available: `boil` (three inkings of a face or object that differ by a third of the wobble, cycled at ~2 fps; never for arrows, text or bubbles), `face`, `obj` (66 things: envelope, key, lock, server, cloud, database, sandbox, cube, vm, process, bug, shield, fire, …), `arrow` (`curve=`, `dashed=`, `both=`), `lightning` for "blocked", `bubble` (`to=(x, y)` = the speaker's chin — the tail always points at who is talking), `text`, `stamp`, `pin_num`, `tape`, `circle_emph`, `crossout`, `underline_scribble`, `bracket`, `sparkles`. Colours: `D.PENC` (pen blue, for the one thing the paragraph is about), `D.RED` (only for "no"), `D.GREEN` (only for "yes"), `"currentColor"` for everything else. Never put a face on an object. Run `python3 tools/test_doodle.py` after touching the engine.
+Pieces available: `boil_face` / `boil` (three inkings of a face or object that differ by a third of the wobble, cycled at ~2 fps; a face's backing stays still; never for arrows, text or bubbles), `face`, `obj` (66 things: envelope, key, lock, server, cloud, database, sandbox, cube, vm, process, bug, shield, fire, …), `arrow` (`curve=`, `dashed=`, `both=`), `lightning` for "blocked", `bubble` (`to=(x, y)` = the speaker's chin — the tail always points at who is talking), `text`, `stamp`, `pin_num`, `tape`, `circle_emph`, `crossout`, `underline_scribble`, `bracket`, `sparkles`. Colours: `D.PENC` (pen blue, for the one thing the paragraph is about), `D.RED` (only for "no"), `D.GREEN` (only for "yes"), `"currentColor"` for everything else. Never put a face on an object. Run `python3 tools/test_doodle.py` after touching the engine.
 
 ## Voice
 
