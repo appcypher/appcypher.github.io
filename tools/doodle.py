@@ -749,22 +749,30 @@ def bubble(pen, x, y, w, h, tail="bl", kind="round", fill=PAPER, color="currentC
     pts = rect(x, y, w, h) if kind == "rect" else ell(cx, cy, rx, ry, n=20, sq=3.2)
     body = pen.fill(pts, fill, dx=0, dy=0, jitter=0.8) + pen.line(pts, closed=True, w=1.5, color=color)
     if to is not None:
+        # where the ray centre→chin leaves the body: intersect it with the polygon actually drawn (a squircle, not an ellipse)
         dx, dy = to[0] - cx, to[1] - cy
-        if kind == "rect":
-            k = min(rx / (abs(dx) or 1e-6), ry / (abs(dy) or 1e-6))
-            ex, ey = cx + dx*k, cy + dy*k
-        else:
-            t = math.atan2(dy/ry, dx/rx)
-            ex, ey = cx + rx*math.cos(t), cy + ry*math.sin(t)
+        best = None
+        for i in range(len(pts)):
+            (x1, y1), (x2, y2) = pts[i], pts[(i+1) % len(pts)]
+            sx, sy = x2 - x1, y2 - y1
+            den = dx*sy - dy*sx
+            if abs(den) < 1e-9: continue
+            tr = ((x1-cx)*sy - (y1-cy)*sx) / den
+            ts = ((x1-cx)*dy - (y1-cy)*dx) / den
+            if tr > 0 and 0 <= ts <= 1 and (best is None or tr < best): best = tr
+        best = best if best is not None else 1.0
+        ex, ey = cx + dx*best, cy + dy*best
         vx, vy = to[0] - ex, to[1] - ey
         L = math.hypot(vx, vy) or 1
         ux, uy = vx/L, vy/L
         px, py = -uy, ux
         length = max(10, min(22, L - gap))
-        b1 = (ex + px*14 - ux*3, ey + py*14 - uy*3)
-        b2 = (ex - px*14 - ux*3, ey - py*14 - uy*3)
         tip = (ex + ux*length - px*7, ey + uy*length - py*7)
-        tp = [b1, tip, b2]
+        # fill sinks 8px into the body so the wobbly outline under the base is fully covered; the sides are stroked from 3px inside
+        fill_poly = [(ex + px*15 - ux*8, ey + py*15 - uy*8), tip, (ex - px*15 - ux*8, ey - py*15 - uy*8)]
+        tp = [(ex + px*15 - ux*3, ey + py*15 - uy*3), tip, (ex - px*15 - ux*3, ey - py*15 - uy*3)]
+        body += pen.fill(fill_poly, fill, dx=0, dy=0, jitter=0.3) + pen.line(tp, w=1.5, color=color, jitter=0.4, step=30, dbl=False)
+        return body
     else:
         tails = {
             "bl": [(x+w*0.25, y+h-2), (x+w*0.16, y+h+18), (x+w*0.4, y+h-2)],
