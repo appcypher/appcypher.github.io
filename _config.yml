@@ -9,7 +9,7 @@ kramdown:
   hard_wrap: false
 permalink: /posts/:title/
 timezone: Africa/Lagos
-exclude: [Gemfile, Gemfile.lock, README.md, DESIGN.md, tools, vendor, preview, .bundle]
+exclude: [Gemfile, Gemfile.lock, README.md, DESIGN.md, WRITING.md, tools, vendor, preview, .bundle]
 defaults:
   - scope:
       path: ""
