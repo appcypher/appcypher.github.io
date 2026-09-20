@@ -169,6 +169,14 @@ def scene_patch(pen, W, H, pad=18):
     pts = rect(-pad, -pad, W + 2*pad, H + 2*pad)
     return pen.fill(pts, "var(--dpaper)", dx=0, dy=0, jitter=2.6, step=12) + pen.line(pts, closed=True, w=1, color="var(--dedge)", jitter=2.4, step=12, dbl=False)
 
+def boil(draw, seed, n=3):
+    """Line boil for one element: draw(seed) is called n times with different seeds and the results are wrapped in
+    <g class="f fK"> groups that the site's stylesheet shows one at a time. Use it for faces and objects only —
+    arrows, text, bubbles and stamps stay still."""
+    if n <= 1:
+        return draw(seed)
+    return "".join(f'<g class="f f{k}">{draw(seed + k*17)}</g>' for k in range(n))
+
 def place(inner, x, y, s=1.0, rot=0):
     r = f" rotate({rot} 60 64)" if rot else ""
     return f'<g transform="translate({x} {y}) scale({s}){r}">{inner}</g>'

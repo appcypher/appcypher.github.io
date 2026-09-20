@@ -1,29 +1,350 @@
 {
-  "author": {"name": "stephen", "role": "writes the rants", "head": "round", "skin": "s6", "hair": "short", "eye": "glasses", "mouth": "smile", "extra": ["blush"], "wash": "sage", "back": "blob"},
+  "author": {
+    "name": "stephen",
+    "role": "writes the rants",
+    "head": "round",
+    "skin": "s6",
+    "hair": "short",
+    "eye": "glasses",
+    "mouth": "smile",
+    "extra": [
+      "blush"
+    ],
+    "wash": "sage",
+    "back": "blob"
+  },
   "cast": [
-    {"name": "alice", "role": "sends the message", "head": "round", "skin": "s3", "hair": "curly", "hair_color": "brown", "eye": "oval", "mouth": "smile", "extra": ["earrings"], "wash": "mauve", "back": "blob2"},
-    {"name": "bob", "role": "receives it", "head": "square", "skin": "s2", "hair": "beanie", "eye": "oval", "mouth": "flat", "fh": "hatch", "wash": "blue", "back": "square"},
-    {"name": "carol", "role": "the third party", "head": "egg", "skin": "s7", "hair": "coils", "eye": "dot", "mouth": "big", "extra": ["studs"], "wash": "sage", "back": "ring"},
-    {"name": "dave", "role": "the fourth one", "head": "long", "skin": "s5", "hair": "short", "eye": "glasses", "mouth": "smirk", "fh": "stubble", "wash": "ochre", "back": "blob"},
-    {"name": "eve", "role": "listens in", "head": "round", "skin": "s4", "hair": "short", "eye": "mask", "mouth": "flat", "extra": ["bowtie"], "wash": "gray", "back": "ring"},
-    {"name": "mallory", "role": "attacks", "head": "heart", "skin": "s1", "hair": "hoodie", "eye": "hooded", "brow": "one-up", "mouth": "smirk", "wash": "gray", "back": "hatch"},
-    {"name": "trent", "role": "trusted third party", "head": "round", "skin": "s6", "hair": "bald", "eye": "glasses", "mouth": "smile", "fh": "full", "fh_color": "gray", "extra": ["halo"], "wash": "blue", "back": "blob"},
-    {"name": "peggy", "role": "proves", "head": "small", "skin": "s8", "hair": "braids", "eye": "wide", "mouth": "smile", "extra": ["blush"], "wash": "mauve", "back": "square"},
-    {"name": "victor", "role": "verifies", "head": "block", "skin": "s3", "hair": "gray", "eye": "glasses-sq", "mouth": "flat", "fh": "mustache", "fh_color": "gray", "extra": ["wrinkles"], "wash": "sage", "back": "blob2"},
-    {"name": "walter", "role": "the warden", "head": "wide", "skin": "s5", "hair": "flatcap", "hair_color": "brown", "eye": "oval", "brow": "thick", "mouth": "frown", "fh": "handlebar", "wash": "ochre", "back": "ring"},
-    {"name": "oscar", "role": "the opponent", "head": "long", "skin": "s9", "hair": "locs", "eye": "oval", "brow": "angry", "mouth": "grit", "fh": "goatee", "wash": "clay", "back": "scribble"},
-    {"name": "sybil", "role": "many, all the same", "head": "round", "skin": "s2", "hair": "fringe", "hair_color": "blond", "eye": "dot", "mouth": "smile", "wash": "gray", "back": "blob"},
-    {"name": "grace", "role": "the government", "head": "egg", "skin": "s6", "hair": "headwrap", "eye": "oval", "mouth": "smile", "extra": ["earrings"], "wash": "ochre", "back": "blob2"},
-    {"name": "heidi", "role": "mischief", "head": "heart", "skin": "s1", "hair": "pigtails", "hair_color": "auburn", "eye": "wink", "mouth": "tongue", "extra": ["freckles"], "wash": "mauve", "back": "hatch"},
-    {"name": "ivan", "role": "issues the thing", "head": "square", "skin": "s4", "hair": "turban", "eye": "oval", "mouth": "flat", "fh": "full", "wash": "blue", "back": "square"},
-    {"name": "judy", "role": "the judge", "head": "round", "skin": "s7", "hair": "afro", "eye": "hooded", "mouth": "pout", "extra": ["studs"], "wash": "sage", "back": "ring"},
-    {"name": "frank", "role": "some guy", "head": "block", "skin": "s2", "hair": "receding", "hair_color": "gray", "eye": "sleepy", "mouth": "wavy", "fh": "stubble", "wash": "gray", "back": "blob"},
-    {"name": "erin", "role": "some kid", "head": "small", "skin": "s3", "hair": "bun", "hair_color": "brown", "eye": "line", "mouth": "smile", "extra": ["blush"], "wash": "clay", "back": "blob2"},
-    {"name": "chuck", "role": "troublemaker", "head": "wide", "skin": "s5", "hair": "spiky", "eye": "squint", "mouth": "grin", "extra": ["headphones"], "wash": "blue", "back": "hatch"},
-    {"name": "craig", "role": "cracks passwords", "head": "long", "skin": "s8", "hair": "mohawk", "hair_color": "purple", "eye": "shades", "mouth": "smirk", "extra": ["earbud"], "wash": "mauve", "back": "square"},
-    {"name": "faythe", "role": "trusted advisor", "head": "egg", "skin": "s6", "hair": "hijab", "eye": "oval", "mouth": "smile", "wash": "sage", "back": "blob"},
-    {"name": "olivia", "role": "the oracle", "head": "round", "skin": "s9", "hair": "topknot", "eye": "wide", "mouth": "o", "extra": ["spark"], "wash": "ochre", "back": "ring"},
-    {"name": "wendy", "role": "whistleblower", "head": "heart", "skin": "s4", "hair": "wavy", "hair_color": "auburn", "eye": "oval", "brow": "raised", "mouth": "shout", "extra": ["bangs"], "wash": "clay", "back": "blob"},
-    {"name": "pat", "role": "wears the helmet", "head": "square", "skin": "s3", "hair": "helmet", "eye": "dot", "mouth": "flat", "extra": ["collar"], "wash": "gray", "back": "square"}
+    {
+      "name": "alice",
+      "role": "sends the message",
+      "head": "round",
+      "skin": "s3",
+      "hair": "curly",
+      "hair_color": "brown",
+      "eye": "oval",
+      "mouth": "smile",
+      "extra": [
+        "earrings"
+      ],
+      "wash": "mauve",
+      "back": "blob2"
+    },
+    {
+      "name": "bob",
+      "role": "receives it",
+      "head": "square",
+      "skin": "s2",
+      "hair": "beanie",
+      "eye": "oval",
+      "mouth": "flat",
+      "fh": "hatch",
+      "wash": "blue",
+      "back": "square"
+    },
+    {
+      "name": "carol",
+      "role": "the third party",
+      "head": "egg",
+      "skin": "s7",
+      "hair": "coils",
+      "eye": "dot",
+      "mouth": "big",
+      "extra": [
+        "studs"
+      ],
+      "wash": "sage",
+      "back": "ring"
+    },
+    {
+      "name": "dave",
+      "role": "the fourth one",
+      "head": "long",
+      "skin": "s5",
+      "hair": "short",
+      "eye": "glasses",
+      "mouth": "smirk",
+      "fh": "stubble",
+      "wash": "ochre",
+      "back": "blob"
+    },
+    {
+      "name": "eve",
+      "role": "listens in",
+      "head": "egg",
+      "skin": "s4",
+      "hair": "wavy",
+      "eye": "mask",
+      "mouth": "smirk",
+      "extra": [
+        "earrings"
+      ],
+      "wash": "gray",
+      "back": "ring",
+      "hair_color": "auburn"
+    },
+    {
+      "name": "mallory",
+      "role": "attacks",
+      "head": "heart",
+      "skin": "s1",
+      "hair": "hoodie",
+      "eye": "hooded",
+      "brow": "one-up",
+      "mouth": "smirk",
+      "wash": "gray",
+      "back": "hatch"
+    },
+    {
+      "name": "trent",
+      "role": "trusted third party",
+      "head": "round",
+      "skin": "s6",
+      "hair": "bald",
+      "eye": "glasses",
+      "mouth": "smile",
+      "fh": "full",
+      "fh_color": "gray",
+      "extra": [
+        "halo"
+      ],
+      "wash": "blue",
+      "back": "blob"
+    },
+    {
+      "name": "peggy",
+      "role": "proves",
+      "head": "small",
+      "skin": "s8",
+      "hair": "braids",
+      "eye": "wide",
+      "mouth": "smile",
+      "extra": [
+        "blush"
+      ],
+      "wash": "mauve",
+      "back": "square"
+    },
+    {
+      "name": "victor",
+      "role": "verifies",
+      "head": "block",
+      "skin": "s3",
+      "hair": "gray",
+      "eye": "glasses-sq",
+      "mouth": "flat",
+      "fh": "mustache",
+      "fh_color": "gray",
+      "extra": [
+        "wrinkles"
+      ],
+      "wash": "sage",
+      "back": "blob2"
+    },
+    {
+      "name": "walter",
+      "role": "the warden",
+      "head": "wide",
+      "skin": "s5",
+      "hair": "flatcap",
+      "hair_color": "brown",
+      "eye": "oval",
+      "brow": "thick",
+      "mouth": "frown",
+      "fh": "handlebar",
+      "wash": "ochre",
+      "back": "ring"
+    },
+    {
+      "name": "oscar",
+      "role": "the opponent",
+      "head": "long",
+      "skin": "s9",
+      "hair": "locs",
+      "eye": "oval",
+      "brow": "angry",
+      "mouth": "grit",
+      "fh": "goatee",
+      "wash": "clay",
+      "back": "scribble"
+    },
+    {
+      "name": "sybil",
+      "role": "many, all the same",
+      "head": "round",
+      "skin": "s2",
+      "hair": "fringe",
+      "hair_color": "blond",
+      "eye": "dot",
+      "mouth": "smile",
+      "wash": "gray",
+      "back": "blob"
+    },
+    {
+      "name": "grace",
+      "role": "the government",
+      "head": "egg",
+      "skin": "s6",
+      "hair": "headwrap",
+      "eye": "oval",
+      "mouth": "smile",
+      "extra": [
+        "earrings"
+      ],
+      "wash": "ochre",
+      "back": "blob2"
+    },
+    {
+      "name": "heidi",
+      "role": "mischief",
+      "head": "heart",
+      "skin": "s1",
+      "hair": "pigtails",
+      "hair_color": "auburn",
+      "eye": "wink",
+      "mouth": "tongue",
+      "extra": [
+        "freckles"
+      ],
+      "wash": "mauve",
+      "back": "hatch"
+    },
+    {
+      "name": "ivan",
+      "role": "issues the thing",
+      "head": "square",
+      "skin": "s4",
+      "hair": "turban",
+      "eye": "oval",
+      "mouth": "flat",
+      "fh": "full",
+      "wash": "blue",
+      "back": "square"
+    },
+    {
+      "name": "judy",
+      "role": "the judge",
+      "head": "round",
+      "skin": "s7",
+      "hair": "afro",
+      "eye": "hooded",
+      "mouth": "pout",
+      "extra": [
+        "studs"
+      ],
+      "wash": "sage",
+      "back": "ring"
+    },
+    {
+      "name": "frank",
+      "role": "some guy",
+      "head": "block",
+      "skin": "s2",
+      "hair": "receding",
+      "hair_color": "gray",
+      "eye": "sleepy",
+      "mouth": "wavy",
+      "fh": "stubble",
+      "wash": "gray",
+      "back": "blob"
+    },
+    {
+      "name": "erin",
+      "role": "some kid",
+      "head": "small",
+      "skin": "s3",
+      "hair": "bun",
+      "hair_color": "brown",
+      "eye": "line",
+      "mouth": "smile",
+      "extra": [
+        "blush"
+      ],
+      "wash": "clay",
+      "back": "blob2"
+    },
+    {
+      "name": "chuck",
+      "role": "troublemaker",
+      "head": "wide",
+      "skin": "s5",
+      "hair": "spiky",
+      "eye": "squint",
+      "mouth": "grin",
+      "extra": [
+        "headphones"
+      ],
+      "wash": "blue",
+      "back": "hatch"
+    },
+    {
+      "name": "craig",
+      "role": "cracks passwords",
+      "head": "long",
+      "skin": "s8",
+      "hair": "mohawk",
+      "hair_color": "purple",
+      "eye": "shades",
+      "mouth": "smirk",
+      "extra": [
+        "earbud"
+      ],
+      "wash": "mauve",
+      "back": "square"
+    },
+    {
+      "name": "faythe",
+      "role": "trusted advisor",
+      "head": "egg",
+      "skin": "s6",
+      "hair": "hijab",
+      "eye": "oval",
+      "mouth": "smile",
+      "wash": "sage",
+      "back": "blob"
+    },
+    {
+      "name": "olivia",
+      "role": "the oracle",
+      "head": "round",
+      "skin": "s9",
+      "hair": "topknot",
+      "eye": "wide",
+      "mouth": "o",
+      "extra": [
+        "spark"
+      ],
+      "wash": "ochre",
+      "back": "ring"
+    },
+    {
+      "name": "wendy",
+      "role": "whistleblower",
+      "head": "heart",
+      "skin": "s4",
+      "hair": "wavy",
+      "hair_color": "auburn",
+      "eye": "oval",
+      "brow": "raised",
+      "mouth": "shout",
+      "extra": [
+        "bangs"
+      ],
+      "wash": "clay",
+      "back": "blob"
+    },
+    {
+      "name": "pat",
+      "role": "wears the helmet",
+      "head": "square",
+      "skin": "s3",
+      "hair": "helmet",
+      "eye": "dot",
+      "mouth": "flat",
+      "extra": [
+        "collar"
+      ],
+      "wash": "gray",
+      "back": "square"
+    }
   ]
 }

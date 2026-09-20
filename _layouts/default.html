@@ -22,6 +22,7 @@
 </head>
 <body data-glyphs="{{ '/assets/doodles/glyphs.svg' | relative_url }}">
   <a class="skip" href="#content">Skip to content</a>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="boil" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="1" result="n"><animate attributeName="seed" values="1;2;3;4;5;6" dur="1s" calcMode="discrete" repeatCount="indefinite"/></feTurbulence><feDisplacementMap in="SourceGraphic" in2="n" scale="3.5" xChannelSelector="R" yChannelSelector="G"/></filter></svg>
   <div class="shell">
     {% include rail.html %}
     <main class="main" id="content">{{ content }}</main>

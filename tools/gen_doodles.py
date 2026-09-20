@@ -24,6 +24,8 @@ WASHES = ["blue", "ochre", "sage", "mauve", "clay", "gray"]
 def wrap(inner, vb="0 0 120 120"):
     return f'<svg viewBox="{vb}" aria-hidden="true" focusable="false">{inner}</svg>\n'
 
+frames = D.boil
+
 def recipe(c):
     kw = dict(head=c.get("head", "round"), skin=c.get("skin", "s4"), hair_=c.get("hair", "short"), hair_color=c.get("hair_color", "ink"),
               eye=c.get("eye", "oval"), brow=c.get("brow", "flat"), nose_=c.get("nose", "l"), mouth_=c.get("mouth", "smile"),
@@ -40,14 +42,16 @@ def main():
         os.makedirs(os.path.join(OUT, d), exist_ok=True)
 
     # people: wash style, default hand
+    FRAMES = 3  # line boil: the same drawing inked three times, cycled by CSS (.f0 .f1 .f2)
+    boilers = {data["author"]["name"]}
     for c in people:
         kw = recipe(c)
         rough = float(c.get("rough", 1))
-        inner = D.face(Pen(seed_of(c["name"]), 3, rough=rough), **kw)
-        open(os.path.join(OUT, "people", f'{c["name"]}.svg'), "w").write(wrap(inner))
+        n = FRAMES if c["name"] in boilers else 1
+        open(os.path.join(OUT, "people", f'{c["name"]}.svg'), "w").write(wrap(frames(lambda s: D.face(Pen(s, 3, rough=rough), **kw), seed_of(c["name"]), n)))
         # a furious variant for the rant marker
         kw2 = dict(kw); kw2.update(eye="oval", brow="angry", mouth_="shout", extra=tuple(kw["extra"]) + ("cloud", "bangs", "steam"))
-        open(os.path.join(OUT, "people", f'{c["name"]}-rant.svg'), "w").write(wrap(D.face(Pen(seed_of(c["name"]) + 1, 3, rough=2.2), **kw2)))
+        open(os.path.join(OUT, "people", f'{c["name"]}-rant.svg'), "w").write(wrap(frames(lambda s: D.face(Pen(s, 3, rough=2.2), **kw2), seed_of(c["name"]) + 1, n)))
 
     # things
     for i, k in enumerate(THINGS):
@@ -64,13 +68,13 @@ def main():
     os.makedirs(os.path.join(ROOT, "assets", "doodles"), exist_ok=True)
     open(os.path.join(ROOT, "assets", "doodles", "glyphs.svg"), "w").write('<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' + "".join(syms) + "</svg>\n")
 
-    # empty-state scene: alice asks, bob answers
-    p = Pen(77, 3); W, H = 960, 300
+    # empty-state scene: alice asks, bob answers. faces boil; arrow, words, bubbles and stamp are still
+    W, H = 960, 300
     a = recipe(data["cast"][0]); b = recipe(data["cast"][1])
-    s = D.place(D.face(p, look=(1.5, 0), **a), 40, 40, 1.5)
-    s += D.place(D.face(p, look=(-1.5, 0), **b), 740, 40, 1.5)
+    p = Pen(77, 3)
+    s = D.place(D.boil(lambda sd: D.face(Pen(sd, 3), look=(1.5, 0), **a), 101, FRAMES), 40, 40, 1.5)
+    s += D.place(D.boil(lambda sd: D.face(Pen(sd, 3), look=(-1.5, 0), **b), 202, FRAMES), 740, 40, 1.5)
     s += D.arrow(p, (250, 140), (730, 140), w=2.2) + D.text(490, 118, "any update?", 24, "hand", D.PENC, "middle")
-    # bubbles sit under each speaker and aim their tail at the chin (face placed at 40/740, scale 1.5 → chin ≈ x+90, y+188)
     s += D.bubble(p, 60, 232, 210, 50, kind="round", to=(132, 192)) + D.text(165, 264, "is the first rant out yet?", 19, "hand", "currentColor", "middle")
     s += D.bubble(p, 690, 232, 240, 50, kind="round", to=(828, 192)) + D.text(810, 264, "still brewing. come back soon.", 19, "hand", "currentColor", "middle")
     s += D.stamp(p, 420, 200, "0 posts", "currentColor", rot=-6, size=13)
