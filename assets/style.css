@@ -56,11 +56,11 @@ svg{overflow:visible}
 .glyph{display:inline-block;width:1.25em;height:1.25em;vertical-align:-.3em;margin:0 .1em;color:currentColor}
 .scene{display:block;width:100%}
 .scene svg{width:100%;height:auto;display:block;overflow:visible}
-/* line boil: doodles inked three times (.f0 .f1 .f2) show one frame at a time, ~3 fps */
+/* line boil: doodles inked three times (.f0 .f1 .f2) show one frame at a time, ~2 fps */
 .f{visibility:hidden}
-.f0{animation:boil 1.05s steps(1) infinite}
-.f1{animation:boil 1.05s steps(1) infinite;animation-delay:-.7s}
-.f2{animation:boil 1.05s steps(1) infinite;animation-delay:-.35s}
+.f0{animation:boil 1.5s steps(1) infinite}
+.f1{animation:boil 1.5s steps(1) infinite;animation-delay:-1s}
+.f2{animation:boil 1.5s steps(1) infinite;animation-delay:-.5s}
 @keyframes boil{0%{visibility:visible}33.333%{visibility:hidden}}
 /* single-drawing doodles shake on hover instead (one animated filter, defined in the layout) */
 .card:hover .doodle svg,.castchip:hover .doodle svg,.member:hover .doodle svg{filter:url(#boil)}

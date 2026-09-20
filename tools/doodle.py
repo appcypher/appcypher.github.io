@@ -55,9 +55,12 @@ def sc(pts, s, cx=60, cy=64): return [(cx+(x-cx)*s, cy+(y-cy)*s) for x, y in pts
 
 # style: 1 glyph · 2 line · 3 wash · 4 pencil · 5 ink · 6 cut-paper
 class Pen:
-    def __init__(self, seed=1, style=3, rough=1.0):
-        """rough: 0 ruler · 0.5 careful · 1 default · 1.5 quick · 2 shaky · 3 caffeine"""
+    def __init__(self, seed=1, style=3, rough=1.0, boil_seed=None, boil=0.35):
+        """rough: 0 ruler · 0.5 careful · 1 default · 1.5 quick · 2 shaky · 3 caffeine
+        boil_seed: a second random stream that adds `boil` × the wobble on top of the base wobble, so frames drawn
+        with the same `seed` and different `boil_seed`s share one drawing and differ only slightly (line boil)."""
         self.r = random.Random(seed); self.style = style; self.rough = rough
+        self.r2 = random.Random(boil_seed) if boil_seed is not None else None; self.boil = boil
     @property
     def jit(self): return {1: 0.22, 2: 0.75, 3: 0.75, 4: 0.85, 5: 1.0, 6: 0.8}[self.style] * self.rough
     def _step(self, step): return step if self.rough <= 1.2 else max(3.0, step * (1.2 / self.rough))
@@ -68,7 +71,11 @@ class Pen:
     @property
     def off(self): return {1: (0, 0), 2: (0, 0), 3: (2.2, 1.6), 4: (0, 0), 5: (2.8, 2.2), 6: (5, 4)}[self.style]
     def _j(self, pts, amt):
-        return [(x+self.r.gauss(0, amt), y+self.r.gauss(0, amt)) for x, y in pts]
+        out = [(x+self.r.gauss(0, amt), y+self.r.gauss(0, amt)) for x, y in pts]
+        if self.r2 is not None and amt > 0:
+            b = amt * self.boil
+            out = [(x+self.r2.gauss(0, b), y+self.r2.gauss(0, b)) for x, y in out]
+        return out
     def line(self, pts, closed=False, w=1.5, color="currentColor", op=1.0, jitter=None, step=6, dbl=None):
         j = self.jit if jitter is None else jitter * max(self.rough, 0.001)
         step = self._step(step) * (2.5 if self.style == 1 else 1)
@@ -169,13 +176,14 @@ def scene_patch(pen, W, H, pad=18):
     pts = rect(-pad, -pad, W + 2*pad, H + 2*pad)
     return pen.fill(pts, "var(--dpaper)", dx=0, dy=0, jitter=2.6, step=12) + pen.line(pts, closed=True, w=1, color="var(--dedge)", jitter=2.4, step=12, dbl=False)
 
-def boil(draw, seed, n=3):
-    """Line boil for one element: draw(seed) is called n times with different seeds and the results are wrapped in
-    <g class="f fK"> groups that the site's stylesheet shows one at a time. Use it for faces and objects only —
-    arrows, text, bubbles and stamps stay still."""
+def boil(make, seed, n=3, style=3, rough=1.0, amount=0.35):
+    """Line boil for one element. make(pen) draws it; it is drawn n times with the same base seed and a different
+    boil_seed each, so the frames are one drawing whose line shifts by `amount` of its wobble. The frames go in
+    <g class="f fK"> groups that the site's stylesheet shows one at a time. Faces and objects only — arrows, text,
+    bubbles and stamps stay still."""
     if n <= 1:
-        return draw(seed)
-    return "".join(f'<g class="f f{k}">{draw(seed + k*17)}</g>' for k in range(n))
+        return make(Pen(seed, style, rough=rough))
+    return "".join(f'<g class="f f{k}">{make(Pen(seed, style, rough=rough, boil_seed=seed + 1000 + k*17, boil=amount))}</g>' for k in range(n))
 
 def place(inner, x, y, s=1.0, rot=0):
     r = f" rotate({rot} 60 64)" if rot else ""
