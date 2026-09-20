@@ -8,6 +8,7 @@
   {%- assign who = parts[0] | strip | downcase -%}
   {%- assign say = l | remove_first: parts[0] | remove_first: ":" | strip -%}
   {%- if first == "" -%}{%- assign first = who -%}{%- endif -%}
-  <div class="turn{% if who != first %} r{% endif %}">{% include doodle.html who=who size=72 %}<div><p class="bubble">{{ say | markdownify | remove: "<p>" | remove: "</p>" }}</p><span class="who">{{ who }}</span></div></div>
+  {%- if who != first %}{% assign dir = "right" %}{% else %}{% assign dir = "left" %}{% endif -%}
+  <div class="turn{% if who != first %} r{% endif %}">{% include doodle.html who=who size=72 %}<div><p class="bubble">{{ say | markdownify | remove: "<p>" | remove: "</p>" }}{% include tail.html dir=dir %}</p><span class="who">{{ who }}</span></div></div>
 {%- endfor -%}
 </div>

@@ -92,4 +92,4 @@ Data:
 
 Both themes, 390px mobile, and a post that uses every convention above. Do not invent posts or characters beyond `cast.yml`; placeholders stay bracketed. Do not display an email or add a contact form. GPG-sign commits.
 
-Rule for every bubble, SVG or HTML: the tail points at the speaker's face. In the engine that is `to=`; in the page CSS the dialogue tail sits at the bubble's vertical centre beside the face and the margin-reaction tail is centred under the face.
+Rule for every bubble, SVG or HTML: the tail points at the speaker's face and is part of the bubble, not glued on. In the engine `to=` splices a short swooped tail into the bubble's own outline (one closed path, same wobble); keep the bubble within ~30px of the chin so the tail stays short. In the page, `_includes/tail.html` draws the tail (paper fill hides the border, only the two curved sides are stroked): dialogue tails sit at the bubble's vertical centre beside the face, margin-reaction tails are centred under the face.

@@ -1,0 +1,7 @@
+{%- comment -%} hand-drawn speech-bubble tail. dir: left | right | up. the fill covers the bubble border where it meets; only the two curved sides are stroked. {%- endcomment -%}
+{%- assign dir = include.dir | default: "left" -%}
+{%- if dir == "up" -%}
+<svg class="tail tail-up" viewBox="0 0 22 24" aria-hidden="true"><path class="tail-fill" d="M3 24C6 16 8 9 11 1C13 8 16 16 19 24Z"/><path class="tail-line" d="M3 24C6 16 8 9 11 1C13 8 16 16 19 24"/></svg>
+{%- else -%}
+<svg class="tail tail-{{ dir }}" viewBox="0 0 24 22" aria-hidden="true"><path class="tail-fill" d="M24 3C15 6 7 9 1 11C8 13 16 16 24 19Z"/><path class="tail-line" d="M24 3C15 6 7 9 1 11C8 13 16 16 24 19"/></svg>
+{%- endif -%}
