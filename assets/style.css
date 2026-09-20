@@ -1,6 +1,16 @@
 @charset "UTF-8";
-/* Cypher Rants — notebook theme. See DESIGN.md. Dark is the default; light via [data-theme="light"]. */
+/* Cypher Rants — notebook theme. See DESIGN.md. Light is the default; dark via [data-theme="dark"]. */
 :root{
+  color-scheme:light;
+  --paper:#d2c79d;--ink:#171612;--muted:#4f4a36;--line:#a89d70;--mark-bg:#171612;--mark-fg:#d2c79d;--pen:#2436c7;--pen-hl:rgba(36,54,199,.18);--code:#c6ba8e;
+  --s1:#efdcc9;--s2:#e9cbb0;--s3:#dcb894;--s4:#c9a97e;--s5:#c48f62;--s6:#a9704a;--s7:#8a5636;--s8:#63402a;--s9:#45291b;
+  --p1:#efdcc9;--p2:#e9cbb0;--p3:#dcb894;--p4:#c9a97e;--p5:#c48f62;--p6:#a9704a;--p7:#8a5636;--p8:#63402a;--p9:#45291b;
+  --h-ink:#171612;--h-brown:#5a3a26;--h-auburn:#8a4b2a;--h-blond:#cdb063;--h-gray:#9a9890;--h-white:#e5e0d2;--h-purple:#6b4d8a;--h-teal:#4f8a86;
+  --w-sage:rgba(150,165,130,.6);--w-blue:rgba(140,160,190,.6);--w-ochre:rgba(205,170,90,.6);--w-mauve:rgba(170,145,170,.6);--w-clay:rgba(190,125,100,.6);--w-gray:rgba(160,158,150,.5);
+  --red:#b8433a;--green:#4f8a5a;--cheek:rgba(213,154,154,.4);
+  --sketch:255px 15px 225px 15px/15px 225px 15px 255px;
+}
+:root[data-theme="dark"]{
   color-scheme:dark;
   --paper:#17160f;--ink:#e6dcb2;--muted:#9b9370;--line:#3b3826;--mark-bg:#e6dcb2;--mark-fg:#17160f;--pen:#9aa8ff;--pen-hl:rgba(122,140,255,.26);--code:#201f15;
   /* doodle tokens: not an inversion — skin one step darker than the line, pencil one step lighter than the page, hair a warm charcoal, washes as glazes */
@@ -9,16 +19,6 @@
   --h-ink:#4a4436;--h-brown:#6b4a30;--h-auburn:#94522f;--h-blond:#b09a55;--h-gray:#7a786f;--h-white:#a9a598;--h-purple:#7a5c9c;--h-teal:#4f8a86;
   --w-sage:rgba(190,200,170,.26);--w-blue:rgba(170,190,225,.28);--w-ochre:rgba(225,190,110,.28);--w-mauve:rgba(205,180,210,.28);--w-clay:rgba(225,150,120,.28);--w-gray:rgba(200,198,190,.2);
   --red:#e0655a;--green:#7fbf8a;--cheek:rgba(230,150,150,.35);
-  --sketch:255px 15px 225px 15px/15px 225px 15px 255px;
-}
-:root[data-theme="light"]{
-  color-scheme:light;
-  --paper:#d2c79d;--ink:#171612;--muted:#4f4a36;--line:#a89d70;--mark-bg:#171612;--mark-fg:#d2c79d;--pen:#2436c7;--pen-hl:rgba(36,54,199,.18);--code:#c6ba8e;
-  --s1:#efdcc9;--s2:#e9cbb0;--s3:#dcb894;--s4:#c9a97e;--s5:#c48f62;--s6:#a9704a;--s7:#8a5636;--s8:#63402a;--s9:#45291b;
-  --p1:#efdcc9;--p2:#e9cbb0;--p3:#dcb894;--p4:#c9a97e;--p5:#c48f62;--p6:#a9704a;--p7:#8a5636;--p8:#63402a;--p9:#45291b;
-  --h-ink:#171612;--h-brown:#5a3a26;--h-auburn:#8a4b2a;--h-blond:#cdb063;--h-gray:#9a9890;--h-white:#e5e0d2;--h-purple:#6b4d8a;--h-teal:#4f8a86;
-  --w-sage:rgba(150,165,130,.6);--w-blue:rgba(140,160,190,.6);--w-ochre:rgba(205,170,90,.6);--w-mauve:rgba(170,145,170,.6);--w-clay:rgba(190,125,100,.6);--w-gray:rgba(160,158,150,.5);
-  --red:#b8433a;--green:#4f8a5a;--cheek:rgba(213,154,154,.4);
 }
 
 *{box-sizing:border-box}

@@ -7,7 +7,7 @@
   const button = document.getElementById('theme-toggle');
   if (button) {
     const update = () => {
-      const dark = root.dataset.theme !== 'light';
+      const dark = root.dataset.theme === 'dark';
       button.querySelector('.tog-icon').innerHTML = dark ? MOON : SUN;
       button.querySelector('.tog-label').textContent = dark ? 'dark' : 'light';
       button.setAttribute('aria-label', `Switch to ${dark ? 'light' : 'dark'} theme`);
@@ -17,7 +17,7 @@
     button.hidden = false;
     update();
     button.addEventListener('click', () => {
-      root.dataset.theme = root.dataset.theme === 'light' ? 'dark' : 'light';
+      root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
       // Storage may be unavailable in private or restricted browser contexts.
       try { localStorage.setItem('cypher-theme', root.dataset.theme); } catch {}
       update();

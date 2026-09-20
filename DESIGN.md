@@ -16,7 +16,7 @@ Every page is a fixed left rail plus the page. There is no top nav and no footer
 
 ## Tokens
 
-Dark is the default (`<html data-theme="dark">`), light via `[data-theme="light"]`. Keep `assets/theme.js` behaviour (persisted toggle, no flash). Set `<meta name="theme-color">` per theme.
+Light is the default (`<html data-theme="light">`), dark via `[data-theme="dark"]`. Keep `assets/theme.js` behaviour (persisted toggle, no flash). Set `<meta name="theme-color">` per theme.
 
 Page tokens:
 
