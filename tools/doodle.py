@@ -721,8 +721,9 @@ def lightning(pen, p0, p1, color=RED, w=2.2):
     return pen.line(pts, w=w, color=color, jitter=0.3, step=40, dbl=False)
 
 def bubble(pen, x, y, w, h, tail="bl", kind="round", fill=PAPER, color="currentColor", to=None, gap=6):
-    """A speech bubble: body + a short wedge tail laid over the outline (the wedge's fill hides the outline under it).
-    to=(x, y) puts the wedge on the edge nearest that point (the speaker's chin) and points the tip at it; otherwise `tail` picks a fixed corner."""
+    """A speech bubble with a short wedge aimed at the speaker.
+    Directed tails share one closed outline with the body so jitter cannot open a seam.
+    Otherwise `tail` selects the legacy fixed-corner wedge."""
     cx, cy, rx, ry = x + w/2, y + h/2, w/2, h/2
     if kind == "spiky":
         pts = []
@@ -747,7 +748,6 @@ def bubble(pen, x, y, w, h, tail="bl", kind="round", fill=PAPER, color="currentC
             body += pen.line(ell(x+w*0.8, y+h+10, 6, 5, n=8), closed=True, w=1.3, color=color) + pen.line(ell(x+w*0.88, y+h+24, 3.5, 3, n=8), closed=True, w=1.2, color=color)
         return body
     pts = rect(x, y, w, h) if kind == "rect" else ell(cx, cy, rx, ry, n=20, sq=3.2)
-    body = pen.fill(pts, fill, dx=0, dy=0, jitter=0.8) + pen.line(pts, closed=True, w=1.5, color=color)
     if to is not None:
         # where the ray centre→chin leaves the body: intersect it with the polygon actually drawn (a squircle, not an ellipse)
         dx, dy = to[0] - cx, to[1] - cy
@@ -768,12 +768,30 @@ def bubble(pen, x, y, w, h, tail="bl", kind="round", fill=PAPER, color="currentC
         px, py = -uy, ux
         length = max(10, min(22, L - gap))
         tip = (ex + ux*length - px*7, ey + uy*length - py*7)
-        # fill sinks 8px into the body so the wobbly outline under the base is fully covered; the sides are stroked from 3px inside
-        fill_poly = [(ex + px*15 - ux*8, ey + py*15 - uy*8), tip, (ex - px*15 - ux*8, ey - py*15 - uy*8)]
-        tp = [(ex + px*15 - ux*3, ey + py*15 - uy*3), tip, (ex - px*15 - ux*3, ey - py*15 - uy*3)]
-        body += pen.fill(fill_poly, fill, dx=0, dy=0, jitter=0.3) + pen.line(tp, w=1.5, color=color, jitter=0.4, step=30, dbl=False)
-        return body
+        # Remove a short arc from the body and route that same contour through
+        # the tip. Filling/stroking one path avoids both a gap and an inner seam.
+        perimeter = resample(pts, pen._step(6), True)
+        n = len(perimeter)
+        centre = min(range(n), key=lambda i: math.hypot(perimeter[i][0]-ex, perimeter[i][1]-ey))
+        ends = []
+        for direction in (-1, 1):
+            i, distance = centre, 0
+            while distance < min(15, w/4, h/4):
+                j = (i + direction) % n
+                distance += math.dist(perimeter[i], perimeter[j])
+                i = j
+            ends.append(i)
+        before, after = ends
+        contour = [tip]
+        i = after
+        while True:
+            contour.append(perimeter[i])
+            if i == before: break
+            i = (i + 1) % n
+        outline = pen.line(contour, closed=True, w=1.5, color=color, dbl=False)
+        return outline.replace('fill="none"', f'fill="{fill}"', 1)
     else:
+        body = pen.fill(pts, fill, dx=0, dy=0, jitter=0.8) + pen.line(pts, closed=True, w=1.5, color=color)
         tails = {
             "bl": [(x+w*0.25, y+h-2), (x+w*0.16, y+h+18), (x+w*0.4, y+h-2)],
             "br": [(x+w*0.75, y+h-2), (x+w*0.84, y+h+18), (x+w*0.6, y+h-2)],
