@@ -20,7 +20,6 @@ layout: default
     {%- if post.tags.size > 0 or post.rant %}<span class="chips">{% if post.rant %}<span class="chip pen">rant</span>{% endif %}{% for t in post.tags %}<span class="chip">{{ t }}</span>{% endfor %}</span>{% endif %}
   </a>
   {%- endfor %}
-  <div class="card ghost"><span class="hand">drop a .md into _posts/ and it shows up here</span><span class="path">_posts/YYYY-MM-DD-title.md</span></div>
 </div>
 <div class="push"></div>
 {% include cast-strip.html limit=6 %}

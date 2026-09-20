@@ -2,7 +2,8 @@
 """Generate the site's doodle SVGs from _data/cast.json with tools/doodle.py.
 
 Writes inline-able SVG into _includes/doodles/ (people, things, the empty-state scene),
-the glyph sprite into assets/doodles/glyphs.svg (fetched on demand), and the favicon. Run from the repo root: python3 tools/gen_doodles.py
+the glyph sprite into assets/doodles/glyphs.svg (fetched on demand), and the favicon SVG
+(rasterise it to assets/favicon.png and apple-touch-icon.png with: qlmanage -t -s 64 -o . assets/favicon.svg). Run from the repo root: python3 tools/gen_doodles.py
 """
 import json, os, sys
 
@@ -74,10 +75,11 @@ def main():
     s += D.stamp(p, 420, 200, "0 posts", "currentColor", rot=-6, size=13)
     open(os.path.join(OUT, "scenes", "empty-state.svg"), "w").write(wrap(s, f"0 0 {W} {H}"))
 
-    # favicon: khaki tile, ink "cr." tilted
-    fav = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="13" fill="#d2c79d"/>'
-           '<text x="32" y="43" text-anchor="middle" font-family="IBM Plex Mono, Menlo, ui-monospace, monospace" font-weight="700" font-size="33" letter-spacing="-2" fill="#171612" transform="rotate(-6 32 32)">cr.</text></svg>\n')
-    open(os.path.join(ROOT, "assets", "favicon.svg"), "w").write(fav)
+    # favicon: khaki tile with a three-mark face, thick strokes so it survives 16px. no fonts, so it renders the same everywhere
+    p = Pen(3, 2, rough=1.0)
+    f = p.line(D.ell(60, 66, 34, 36, n=26), closed=True, w=6) + p.dot(46, 60, 5.2) + p.dot(74, 60, 5.2) + p.line([(48, 82), (60, 90), (72, 82)], w=6)
+    f += "".join(p.line([(40 + i*10, 34), (42 + i*10, 22)], w=5, dbl=False) for i in range(5))
+    open(os.path.join(ROOT, "assets", "favicon.svg"), "w").write('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><rect width="120" height="120" rx="26" fill="#d2c79d"/><g style="color:#171612">' + f + "</g></svg>\n")
     print(f"people {len(people)}×2, things {len(THINGS)}, sprite {len(syms)} symbols, scene, favicon")
 
 if __name__ == "__main__":
