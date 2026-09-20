@@ -1,6 +1,6 @@
 # Cypher Rants
 
-Personal Jekyll blog for https://appcypher.github.io — a notebook with a fixed left rail, handwritten type, paper grain, and hand-drawn doodles generated from a small pen engine. Light by default, with a dark theme. The design is documented in `DESIGN.md`.
+Personal Jekyll blog for https://appcypher.dev — a notebook with a fixed left rail, handwritten type, paper grain, and hand-drawn doodles generated from a small pen engine. Light by default, with a dark theme. The design is documented in `DESIGN.md`.
 
 ## Publish on GitHub Pages
 
