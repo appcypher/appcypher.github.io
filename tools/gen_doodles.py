@@ -73,7 +73,7 @@ def main():
     p = Pen(77, 3)
     s = D.place(D.boil_face(101, FRAMES, look=(1.5, 0), **a), 40, 40, 1.5)
     s += D.place(D.boil_face(202, FRAMES, look=(-1.5, 0), **b), 740, 40, 1.5)
-    s += D.arrow(p, (250, 140), (730, 140), w=2.2) + D.text(490, 118, "any update?", 24, "hand", D.PENC, "middle")
+    s += D.boil(lambda pen: D.arrow(pen, (250, 140), (730, 140), w=2.2), 303, FRAMES) + D.text(490, 118, "any update?", 24, "hand", D.PENC, "middle")
     s += D.bubble(p, 60, 232, 210, 50, kind="round", to=(132, 192)) + D.text(165, 264, "is the first rant out yet?", 19, "hand", "currentColor", "middle")
     s += D.bubble(p, 690, 232, 240, 50, kind="round", to=(828, 192)) + D.text(810, 264, "still brewing. come back soon.", 19, "hand", "currentColor", "middle")
     s += D.stamp(p, 420, 200, "0 posts", "currentColor", rot=-6, size=13)
