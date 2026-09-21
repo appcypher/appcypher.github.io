@@ -24,6 +24,14 @@
     });
   }
 
+  // Anything off the site opens in its own tab, so a post never loses the reader's place.
+  document.querySelectorAll('a[href]').forEach((a) => {
+    if (a.hostname && a.hostname !== location.hostname) {
+      a.target = '_blank';
+      a.rel = 'noopener';
+    }
+  });
+
   // Prose conventions that plain Markdown can't express.
   const prose = document.querySelector('.prose');
   if (!prose) return;

@@ -1,0 +1,6 @@
+{%- comment -%}a link out to a video: poster, one line of text, and a drawn play button{%- endcomment -%}
+<a class="watch" href="{{ include.url }}" target="_blank" rel="noopener">
+  {%- if include.poster %}<img src="{{ include.poster | relative_url }}" alt="{{ include.alt | default: '' | escape }}">{% endif -%}
+  <span class="w-t"><b>{{ include.title | default: "watch it" }}</b>{% if include.meta %}<span>{{ include.meta }}</span>{% endif %}</span>
+  <span class="doodle w-play">{% include doodles/marks/play.svg %}</span>
+</a>

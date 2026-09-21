@@ -2,6 +2,7 @@
 title: Your first rant
 description: Replace this with a short introduction to your post.
 cover: stephen
+published: false     # reference sheet, not a post: never builds, not even with --drafts
 # rant: true        # marks the post as a rant: RANT stamp on the cover, "rant" chip on the card
 # mood: rant        # use the author's furious doodle as the cover
 # tags: [jekyll]

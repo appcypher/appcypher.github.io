@@ -1,4 +1,9 @@
 {%- assign who = include.who | default: "stephen" -%}
 {%- assign size = include.size | default: 120 -%}
+{%- if include.art -%}
+{%- comment -%}art = a drawing in doodles/covers/, for a post whose cover is its subject rather than a face{%- endcomment -%}
+{%- capture path -%}doodles/covers/{{ include.art }}.svg{%- endcapture -%}
+{%- else -%}
 {%- capture path -%}doodles/people/{{ who }}{% if include.mood == "rant" %}-rant{% endif %}.svg{%- endcapture -%}
+{%- endif -%}
 <span class="doodle{% if include.class %} {{ include.class }}{% endif %}" style="--size:{{ size }}px">{% include {{ path }} %}</span>

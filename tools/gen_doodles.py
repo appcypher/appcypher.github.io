@@ -37,7 +37,7 @@ def seed_of(name):
 def main():
     data = json.load(open(os.path.join(ROOT, "_data", "cast.json")))
     people = [data["author"]] + data["cast"]
-    for d in ("people", "things", "scenes"):
+    for d in ("people", "things", "scenes", "marks"):
         os.makedirs(os.path.join(OUT, d), exist_ok=True)
 
     # people: wash style, default hand
@@ -78,6 +78,14 @@ def main():
     s += D.bubble(p, 690, 232, 240, 50, kind="round", to=(828, 192)) + D.text(810, 264, "still brewing. come back soon.", 19, "hand", "currentColor", "middle")
     s += D.stamp(p, 420, 200, "0 posts", "currentColor", rot=-6, size=13)
     open(os.path.join(OUT, "scenes", "empty-state.svg"), "w").write(wrap(s, f"0 0 {W} {H}"))
+
+    # marks: drawn ui bits that are not people or things. play sits on a video link.
+    p = Pen(5, 3, rough=0.7)
+    m  = p.fill(D.ell(60, 60, 36, 36, n=30), "var(--paper)", dx=0, dy=0, jitter=1.2, op=.86)
+    m += p.line(D.ell(60, 60, 36, 36, n=30), closed=True, w=2.8)
+    m += p.fill([(50, 40), (86, 60), (50, 80)], D.WASH["clay"], dx=0, dy=0, jitter=1.2)
+    m += p.line([(50, 40), (86, 60), (50, 80)], closed=True, w=2.4)
+    open(os.path.join(OUT, "marks", "play.svg"), "w").write(wrap(m))
 
     # favicon: khaki tile with a speech bubble holding a rant scribble. thick strokes so it survives 16px; no fonts, so it renders the same everywhere
     p = Pen(9, 2, rough=1.0)

@@ -11,6 +11,7 @@ One Markdown file: `_posts/YYYY-MM-DD-slug.md`. Front matter:
 title: Sandboxes are not containers          # sentence case, no period
 description: One line under the title and on the card.   # 90–140 chars, a real sentence
 cover: bob            # who sits on the card and above the article; any name in _data/cast.json; default stephen
+cover_art: slug       # optional: draw the post's subject instead of a face, from _includes/doodles/covers/slug.svg
 rant: true            # optional: RANT stamp on the cover, "rant" chip on the card
 mood: rant            # optional: use the cover character's furious variant
 tags: [sandboxing, kvm]   # optional, lowercase
@@ -34,6 +35,7 @@ Plain Markdown is enough. These extras exist; use them when they carry meaning, 
 | `> note: the cover key picks the doodle.` | a sticky note (ochre). Ordinary `>` quotes keep the pen rule |
 | `{% include figure.html scene="key-exchange" caption="fig. 1 — alice sends bob a key" %}` | a full-width figure (924px, breaks out of the text column) from `_includes/doodles/scenes/key-exchange.svg` |
 | `{% include figure.html src="/assets/posts/slug/thing.png" caption="…" %}` | same, for a scanned or hand-drawn image |
+| `{% include video.html url="https://youtu.be/…" poster="/assets/posts/slug/poster.png" title="watch it run" meta="2 min on youtube" %}` | a link out to a video: poster, one line, and a drawn play button. no embed, so nothing third-party loads |
 | `:key:` `:envelope:` `:eve:` inline | tiny line glyphs in the sentence. Any of the 66 things or any cast name; the sprite is fetched only on pages that use one |
 | `` `code` `` and fenced blocks | monospace on the code wash; language hints work (`rust`, `bash`, `python`) |
 

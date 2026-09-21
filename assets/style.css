@@ -155,7 +155,16 @@ svg{overflow:visible}
 .prose .aside,.prose .react{float:right;clear:right;width:240px;margin:0 -284px 18px 0;font-family:var(--hand);font-size:23px;font-weight:500;line-height:1.15;color:var(--pen)}
 .prose .react{display:flex;flex-direction:column;align-items:center;gap:8px;font-family:inherit;color:inherit}
 .prose .react .bubble{font-size:18px;padding:6px 12px;position:relative;background:var(--paper)}
-.fig{margin:8px 0 28px;width:924px;max-width:none;clear:both;display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 0 10px;border-top:1.5px solid var(--line);border-bottom:1.5px solid var(--line)}
+/* video link: poster, one line, drawn play button */
+.watch{display:flex;gap:16px;align-items:center;margin:0;padding:12px 16px 12px 12px;border:1.5px solid var(--ink);border-radius:var(--sketch);text-decoration:none;color:inherit;clear:both}
+.watch img{width:120px;flex:none;display:block;border:1.5px solid var(--line)}
+.watch .w-t{display:flex;flex-direction:column;gap:2px;min-width:0}
+.watch .w-t b{font-weight:400;font-size:20px;line-height:1.25}
+.watch .w-t span{color:var(--muted);font-size:15px;line-height:1.4}
+.watch .w-play{margin-left:auto;flex:none;--size:60px}
+.watch:hover{border-color:var(--pen)}
+.watch:hover .w-play{--size:66px}
+.fig{margin:8px 0 28px;width:auto;max-width:100%;clear:both;display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 0 10px;border-top:1.5px solid var(--line);border-bottom:1.5px solid var(--line)}
 .fig img{max-width:100%;height:auto}
 .fig figcaption{font-size:21px}
 .dlg{display:flex;flex-direction:column;gap:18px;margin:6px 0 26px;clear:both}
@@ -238,6 +247,9 @@ svg{overflow:visible}
   .article-cover{align-items:flex-start}
   .prose{width:auto}
   .prose .aside,.prose .react{float:none;width:auto;margin:6px 0 20px}
+  .watch{gap:12px;padding:10px 12px}
+  .watch img{width:92px}
+  .watch .w-play{--size:46px}
   .prose .react{flex-direction:row;align-items:center;gap:12px}
   .prose .react .tail-up{top:calc(50% - 12px);left:-22px;transform:none}
   .fig{width:100%}

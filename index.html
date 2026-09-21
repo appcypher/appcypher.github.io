@@ -13,7 +13,7 @@ layout: default
   {%- for post in site.posts %}
   {%- assign cover = post.cover | default: "stephen" %}
   <a class="card" href="{{ post.url | relative_url }}">
-    <span class="card-doodle">{% include doodle.html who=cover size=112 mood=post.mood %}</span>
+    <span class="card-doodle">{% include doodle.html art=post.cover_art who=cover size=112 mood=post.mood %}</span>
     <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%b %-d, %Y' | downcase }}</time>
     <h3>{{ post.title | escape }}</h3>
     {% if post.description %}<p>{{ post.description | escape }}</p>{% endif %}
