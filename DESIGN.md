@@ -11,7 +11,7 @@ Jekyll on GitHub Pages, built from `main` at the repo root. Plain HTML, CSS, van
 Every page is a fixed left rail plus the page. There is no top nav and no footer.
 
 - `.shell` is `display: flex`. `.rail` is 300px, sticky, `border-right: 1.5px solid var(--line)`, padding `44px 34px`. `.main` is `flex: 1`, padding `52px 64px`. Below 900px the rail collapses to a top strip (portrait 40px + wordmark + theme toggle + menu button revealing the nav); no sidebar.
-- Rail contents, top to bottom: portrait doodle (150px, on a wash blob), wordmark (`.mark` "cr." + "cypher rants"), one-line intro (muted, 13.5px), nav list (`writing / about / cast` — the active item is prefixed with a pen-coloured hand-drawn arrow SVG, the others indented to match), theme toggle (sketch border), then pushed to the bottom: `github ↗ / x ↗` and the © line. An Atom feed lives at `/feed.xml` (linked in `<head>`, not in the nav).
+- Rail contents, top to bottom: portrait doodle (150px, on a wash blob), wordmark (`.mark` "cr." + "cypher rants"), one-line intro (muted, 13.5px), nav list (`writing / about / cast`, each a page — the active item is prefixed with a pen-coloured hand-drawn arrow SVG, the others indented to match), theme toggle (sketch border), then pushed to the bottom: `github ↗ / x ↗` and the © line. An Atom feed lives at `/feed.xml` (linked in `<head>`, not in the nav).
 - Every page opens with a `.rule`: a `.mark` label on the left ("the writing", "about", "the cast"), muted meta on the right ("N posts · newest first"), hairline underneath.
 
 ## Tokens

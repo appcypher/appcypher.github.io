@@ -3,8 +3,8 @@
   <div class="rule"><span><span class="mark">the cast</span></span><span class="muted">who shows up in the doodles</span></div>
   <div class="cast">
     {%- for c in site.data.cast.cast limit: n %}
-    <a class="castchip" href="{{ '/about/' | relative_url }}#cast-{{ c.name }}">{% include doodle.html who=c.name size=96 %}<span class="who">{{ c.name }}</span></a>
+    <a class="castchip" href="{{ '/cast/' | relative_url }}#cast-{{ c.name }}">{% include doodle.html who=c.name size=96 %}<span class="who">{{ c.name }}</span></a>
     {%- endfor %}
-    <a class="hand castmore" href="{{ '/about/' | relative_url }}#cast">← the whole cast</a>
+    <a class="hand castmore" href="{{ '/cast/' | relative_url }}">← the whole cast</a>
   </div>
 </section>

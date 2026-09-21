@@ -176,6 +176,8 @@ svg{overflow:visible}
 .byline{display:flex;align-items:center;gap:12px}
 
 /* ---- about / cast / 404 ---- */
+.cast-intro{max-width:640px;font-size:18px}
+.cast-intro p{margin:0}
 .about{display:grid;grid-template-columns:minmax(0,600px) 1fr;gap:40px;align-items:center}
 .about-text{display:flex;flex-direction:column;gap:14px;font-size:19px}
 .about-text h1{margin:0;font-size:46px;font-weight:400;letter-spacing:-.01em}
