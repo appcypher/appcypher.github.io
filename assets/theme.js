@@ -24,16 +24,6 @@
     });
   }
 
-  // Mobile nav.
-  const menu = document.getElementById('menu-toggle');
-  const rail = document.getElementById('rail');
-  if (menu && rail) {
-    menu.addEventListener('click', () => {
-      const open = rail.classList.toggle('open');
-      menu.setAttribute('aria-expanded', String(open));
-    });
-  }
-
   // Prose conventions that plain Markdown can't express.
   const prose = document.querySelector('.prose');
   if (!prose) return;

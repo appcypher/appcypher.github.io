@@ -209,16 +209,23 @@ svg{overflow:visible}
 /* ---- mobile ---- */
 @media (max-width:900px){
   .shell{display:block}
-  .rail{position:static;height:auto;width:auto;border-right:0;border-bottom:1.5px solid var(--line);padding:12px 18px;display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:6px 12px}
+  /* the rail becomes a two-row header: portrait · wordmark · toggle, then the three links */
+  .rail{position:static;height:auto;width:auto;border-right:0;border-bottom:1.5px solid var(--line);padding:12px 18px 10px;display:grid;grid-template-columns:auto 1fr auto;grid-template-areas:"portrait wordmark tog" "nav nav nav";align-items:center;gap:6px 12px}
+  .rail-portrait{grid-area:portrait}
   .rail-portrait .doodle{width:40px;height:40px;transform:none}
-  .wordmark{font-size:17px}
-  .intro,.rail-foot{display:none}
-  .menu{display:inline-flex;align-items:center;font-size:15px;padding:5px 12px;background:transparent;border:1.5px solid var(--ink);border-radius:var(--sketch);cursor:pointer;min-height:40px}
-  .tog{order:3;padding:6px 10px}
+  .wordmark{grid-area:wordmark;font-size:17px}
+  .tog{grid-area:tog;justify-self:end;align-self:center;padding:6px 10px}
   .tog .tog-label{display:none}
-  .menu{order:4}
-  .rnav{display:none;grid-column:1/-1;flex-direction:row;flex-wrap:wrap;gap:4px 18px;padding:8px 0 4px}
-  .rail.open .rnav{display:flex}
+  .intro,.rail-foot,.menu{display:none}
+  .rnav{grid-area:nav;display:flex;flex-direction:row;flex-wrap:wrap;gap:0 22px;padding:2px 0 0}
+  .rnav a{min-height:36px}
+  .rnav a:not(.on) .arr{display:none}
+  .rule{flex-wrap:wrap;gap:4px 16px}
+  .rule>span:first-child{white-space:nowrap}
+  .rule .muted{text-align:left;flex-basis:100%;font-size:15px}
+  .cast-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 12px}
+  .member .doodle{width:120px;height:120px}
+  .member .hand{font-size:24px}
   .main{padding:26px 18px 40px;gap:26px}
   .grid{grid-template-columns:1fr;gap:30px}
   .card{padding:18px 18px 16px 96px;min-height:120px}
