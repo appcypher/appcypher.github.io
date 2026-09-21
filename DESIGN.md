@@ -33,14 +33,14 @@ light: --s1:#efdcc9 --s2:#e9cbb0 --s3:#dcb894 --s4:#c9a97e --s5:#c48f62 --s6:#a9
        --h-ink:#171612 --h-brown:#5a3a26 --h-auburn:#8a4b2a --h-blond:#cdb063 --h-gray:#9a9890 --h-white:#e5e0d2 --h-purple:#6b4d8a --h-teal:#4f8a86
        --w-sage:rgba(150,165,130,.6) --w-blue:rgba(140,160,190,.6) --w-ochre:rgba(205,170,90,.6) --w-mauve:rgba(170,145,170,.6) --w-clay:rgba(190,125,100,.6) --w-gray:rgba(160,158,150,.5)
        --red:#b8433a --green:#4f8a5a --cheek:rgba(213,154,154,.4)
-dark:  --s1:#8a7a66 --s2:#8c745c --s3:#8f7050 --s4:#8c6a45 --s5:#8d5f3b --s6:#7c4e30 --s7:#663d25 --s8:#52301c --s9:#3e2314
+dark:  --dink:#c4ad7a --s1:#75685a --s2:#77634f --s3:#7a5f44 --s4:#775a3b --s5:#785132 --s6:#6a4229 --s7:#57341f --s8:#462918 --s9:#351e11
        --p1:#e8d6c0 --p2:#dcc3a5 --p3:#cfb18a --p4:#c2a074 --p5:#bf8f62 --p6:#ad7a52 --p7:#9b6a45 --p8:#8a5a3a --p9:#7a4d30
        --h-ink:#4a4436 --h-brown:#6b4a30 --h-auburn:#94522f --h-blond:#b09a55 --h-gray:#7a786f --h-white:#a9a598 --h-purple:#7a5c9c --h-teal:#4f8a86
        --w-sage:rgba(190,200,170,.26) --w-blue:rgba(170,190,225,.28) --w-ochre:rgba(225,190,110,.28) --w-mauve:rgba(205,180,210,.28) --w-clay:rgba(225,150,120,.28) --w-gray:rgba(200,198,190,.2)
        --red:#e0655a --green:#7fbf8a --cheek:rgba(230,150,150,.35)
 ```
 
-Doodle SVGs are inlined (or loaded as `<svg><use>`), never `<img>`, so `currentColor` and the `var(--…)` fills resolve against the page. Set `color: var(--ink)` on `.doodle`.
+Doodle SVGs are inlined (or loaded as `<svg><use>`), never `<img>`, so `currentColor` and the `var(--…)` fills resolve against the page. `.doodle` and `.scene` set `color: var(--dink)`: the page ink in light mode, a warm tan (`#c4ad7a`) in dark mode so lines read as pen rather than as a highlight; dark skin tones sit a notch below it.
 
 ## Type, grain, devices
 

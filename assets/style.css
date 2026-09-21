@@ -3,6 +3,7 @@
 :root{
   color-scheme:light;
   --paper:#d2c79d;--ink:#171612;--muted:#4f4a36;--line:#a89d70;--mark-bg:#171612;--mark-fg:#d2c79d;--pen:#2436c7;--pen-hl:rgba(36,54,199,.18);--code:#c6ba8e;
+  --dink:#171612;
   --s1:#efdcc9;--s2:#e9cbb0;--s3:#dcb894;--s4:#c9a97e;--s5:#c48f62;--s6:#a9704a;--s7:#8a5636;--s8:#63402a;--s9:#45291b;
   --p1:#efdcc9;--p2:#e9cbb0;--p3:#dcb894;--p4:#c9a97e;--p5:#c48f62;--p6:#a9704a;--p7:#8a5636;--p8:#63402a;--p9:#45291b;
   --h-ink:#171612;--h-brown:#5a3a26;--h-auburn:#8a4b2a;--h-blond:#cdb063;--h-gray:#9a9890;--h-white:#e5e0d2;--h-purple:#6b4d8a;--h-teal:#4f8a86;
@@ -14,8 +15,9 @@
 :root[data-theme="dark"]{
   color-scheme:dark;
   --paper:#17160f;--ink:#e6dcb2;--muted:#9b9370;--line:#3b3826;--mark-bg:#e6dcb2;--mark-fg:#17160f;--pen:#9aa8ff;--pen-hl:rgba(122,140,255,.26);--code:#201f15;
-  /* doodle tokens: not an inversion — skin one step darker than the line, pencil one step lighter than the page, hair a warm charcoal, washes as glazes */
-  --s1:#8a7a66;--s2:#8c745c;--s3:#8f7050;--s4:#8c6a45;--s5:#8d5f3b;--s6:#7c4e30;--s7:#663d25;--s8:#52301c;--s9:#3e2314;
+  /* doodle tokens: not an inversion — the doodle ink (--dink) is a warm tan, skin sits below it, pencil one step lighter than the page, hair a warm charcoal, washes as glazes */
+  --dink:#c4ad7a;
+  --s1:#75685a;--s2:#77634f;--s3:#7a5f44;--s4:#775a3b;--s5:#785132;--s6:#6a4229;--s7:#57341f;--s8:#462918;--s9:#351e11;
   --p1:#e8d6c0;--p2:#dcc3a5;--p3:#cfb18a;--p4:#c2a074;--p5:#bf8f62;--p6:#ad7a52;--p7:#9b6a45;--p8:#8a5a3a;--p9:#7a4d30;
   --h-ink:#4a4436;--h-brown:#6b4a30;--h-auburn:#94522f;--h-blond:#b09a55;--h-gray:#7a786f;--h-white:#a9a598;--h-purple:#7a5c9c;--h-teal:#4f8a86;
   --w-sage:rgba(190,200,170,.26);--w-blue:rgba(170,190,225,.28);--w-ochre:rgba(225,190,110,.28);--w-mauve:rgba(205,180,210,.28);--w-clay:rgba(225,150,120,.28);--w-gray:rgba(200,198,190,.2);
@@ -51,10 +53,10 @@ svg{overflow:visible}
 .stamp-green{color:var(--green)}
 
 /* ---- doodles ---- */
-.doodle{display:inline-block;width:var(--size,120px);height:var(--size,120px);color:var(--ink);line-height:0;flex:none}
+.doodle{display:inline-block;width:var(--size,120px);height:var(--size,120px);color:var(--dink);line-height:0;flex:none}
 .doodle svg{width:100%;height:100%;display:block;overflow:visible}
 .glyph{display:inline-block;width:1.25em;height:1.25em;vertical-align:-.3em;margin:0 .1em;color:currentColor}
-.scene{display:block;width:100%}
+.scene{display:block;width:100%;color:var(--dink)}
 .scene svg{width:100%;height:auto;display:block;overflow:visible}
 /* line boil: doodles inked three times (.f0 .f1 .f2) show one frame at a time, ~2 fps */
 .f{visibility:hidden}
