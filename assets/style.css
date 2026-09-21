@@ -89,7 +89,7 @@ svg{overflow:visible}
 .rail-foot{margin-top:auto;display:flex;flex-direction:column;gap:12px;font-size:15px;color:var(--muted)}
 .socials{display:flex;flex-wrap:wrap;gap:10px}
 .socials a{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;min-height:36px;border:1.5px solid var(--ink);border-radius:var(--sketch);color:var(--ink);text-decoration:none;font-size:15px;line-height:1.2}
-.socials a:hover{color:var(--pen);border-color:var(--pen)}
+.socials a:hover{color:var(--pen)}
 .main{flex:1;min-width:0;padding:52px 64px 48px;display:flex;flex-direction:column;gap:36px}
 .push{flex:1}
 
@@ -101,7 +101,7 @@ svg{overflow:visible}
 .card{position:relative;padding:24px 26px 20px 116px;display:flex;flex-direction:column;gap:6px;min-height:156px;text-decoration:none;color:inherit}
 .card:nth-child(odd){transform:rotate(-.4deg)}
 .card:nth-child(even){transform:rotate(.4deg)}
-.card:hover{color:inherit;border-color:var(--pen)}
+.card:hover{color:inherit}
 .card-doodle{position:absolute;left:-10px;top:-18px}
 .card time{font-size:12px;color:var(--muted)}
 .card h3{margin:0;font-size:24px;font-weight:400;line-height:1.25}
@@ -119,10 +119,10 @@ svg{overflow:visible}
 .castmore{align-self:center;text-decoration:none;transform:rotate(-4deg);display:inline-block;margin-left:6px}
 
 /* ---- article ---- */
-.article{max-width:924px;display:flex;flex-direction:column;gap:28px}
+.article{width:100%;max-width:924px;margin-inline:auto;display:flex;flex-direction:column;gap:28px}
 .back{font-size:16px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;min-height:32px}
 .back svg{width:22px;height:10px}
-.article-head{display:grid;grid-template-columns:640px 240px;column-gap:44px;align-items:end;padding-bottom:28px;border-bottom:1.5px solid var(--line)}
+.article-head{display:grid;grid-template-columns:minmax(0,1fr) 240px;column-gap:44px;align-items:end;padding-bottom:28px;border-bottom:1.5px solid var(--line)}
 .article-title{display:flex;flex-direction:column;gap:12px}
 .meta{margin:0;font-size:13px;color:var(--muted)}
 .article-head h1{margin:0;font-size:56px;font-weight:400;line-height:1.05;letter-spacing:-.01em;overflow-wrap:anywhere}
@@ -130,7 +130,7 @@ svg{overflow:visible}
 .article-cover{display:flex;flex-direction:column;align-items:center;gap:6px;position:relative}
 .article-cover .doodle{transform:rotate(3deg)}
 .article-cover .stamp{position:absolute;right:-10px;bottom:10px;font-size:18px}
-.prose{width:640px;max-width:100%;font-size:19px;line-height:1.55}
+.prose{width:100%;font-size:19px;line-height:1.55;letter-spacing:.015em}
 .prose>*:first-child{margin-top:0}
 .prose p,.prose ul,.prose ol{margin:0 0 20px}
 /* h2s render as marks automatically, so Markdown stays plain ## headings */
@@ -152,7 +152,7 @@ svg{overflow:visible}
 .prose blockquote.note{position:relative;border:0;background:var(--w-ochre);color:var(--ink);font-style:normal;padding:20px 22px 16px;font-size:18px;transform:rotate(-1.2deg);border-radius:4px 10px 5px 9px;max-width:560px;margin:8px 0 28px}
 .prose blockquote.note::before{content:"note";position:absolute;top:-16px;left:16px;transform:rotate(-4deg);font-family:Caveat,cursive;font-size:24px;color:var(--pen)}
 /* margin column: sidenotes and reactions float into the 240px margin */
-.prose .aside,.prose .react{float:right;clear:right;width:240px;margin:0 -284px 18px 0;font-family:var(--hand);font-size:23px;font-weight:500;line-height:1.15;color:var(--pen)}
+.prose .aside,.prose .react{float:right;clear:right;width:240px;margin:0 0 18px 44px;font-family:var(--hand);font-size:23px;font-weight:500;line-height:1.15;color:var(--pen)}
 .prose .react{display:flex;flex-direction:column;align-items:center;gap:8px;font-family:inherit;color:inherit}
 .prose .react .bubble{font-size:18px;padding:6px 12px;position:relative;background:var(--paper)}
 /* video link: poster, one line, drawn play button */
@@ -163,7 +163,8 @@ svg{overflow:visible}
 .watch .w-t span{color:var(--muted);font-size:15px;line-height:1.4}
 .watch .w-play{margin-left:auto;flex:none;--size:60px}
 .watch:hover{border-color:var(--pen)}
-.watch:hover .w-play{--size:66px}
+.watch:hover .w-play{--size:66px;animation:wiggle .6s ease-in-out}
+@keyframes wiggle{0%,100%{transform:rotate(0)}18%{transform:rotate(-8deg)}42%{transform:rotate(7deg)}64%{transform:rotate(-4deg)}84%{transform:rotate(2deg)}}
 .fig{margin:8px 0 28px;width:auto;max-width:100%;clear:both;display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 0 10px;border-top:1.5px solid var(--line);border-bottom:1.5px solid var(--line)}
 .fig img{max-width:100%;height:auto}
 .fig figcaption{font-size:21px}
@@ -182,6 +183,7 @@ svg{overflow:visible}
 .tail-left{left:-22px;top:calc(50% - 12px)}
 .tail-right{right:-22px;top:calc(50% - 12px);transform:scaleX(-1)}
 .tail-up{top:-22px;left:calc(50% - 13px);transform:rotate(90deg)}
+
 .post-nav{clear:both;border-top:1.5px solid var(--line);padding-top:24px;display:flex;justify-content:space-between;align-items:center;gap:20px;font-size:16px;flex-wrap:wrap}
 .post-nav a{text-decoration:none;min-height:32px;display:inline-flex;align-items:center}
 .byline{display:flex;align-items:center;gap:12px}
@@ -260,3 +262,12 @@ svg{overflow:visible}
   .castchip .doodle{width:68px;height:68px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}.f0{visibility:visible}.card:hover .doodle svg,.castchip:hover .doodle svg,.member:hover .doodle svg{filter:none}}
+
+/* rough edges. Every drawn box hides its own crisp border and redraws it on a filtered
+   pseudo-element, so the wobble never touches the text inside. The speech-bubble tail sits above
+   that border and keeps covering the stretch under its base. */
+.pen-defs{position:absolute;width:0;height:0;overflow:hidden}
+.sketch,.tog,.chip,.card,.card.ghost,.bubble,.socials a,.menu{position:relative;border-color:transparent}
+.sketch::after,.tog::after,.chip::after,.card::after,.bubble::after,.socials a::after,.menu::after{content:"";position:absolute;inset:0;border:inherit;border-color:currentColor;border-radius:inherit;filter:url(#rough);pointer-events:none}
+.card:hover::after,.socials a:hover::after{border-color:var(--pen)}
+.tail{z-index:1;filter:url(#rough)}
