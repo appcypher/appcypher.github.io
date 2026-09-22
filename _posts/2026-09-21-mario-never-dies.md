@@ -21,7 +21,7 @@ I bookmarked a bunch of those demos and knew I wanted to build something with Je
 
 Around the same time, we shipped version 0.7 of [microsandbox](https://github.com/superradcompany/microsandbox), which is what I work on. It runs lightweight Linux VMs, mostly so AI agents have somewhere safe to run things. The big additions in 0.7 were full memory snapshots, pause and resume, and branching. Basically, you can freeze a running VM with everything in it, then start as many copies of that frozen moment as you want. Each copy carries on like nothing happened. It's hard to show off, though, because in a terminal all you see is a line saying a branch took 160ms.
 
-So I wanted a demo that used both. I had seen a lot of game demos by then, and Mario is where it clicked. If you've played games, you know what it's like to die and lose twenty minutes of progress. What about a game where the main character never dies? I was calling it "Mario never dies" before there was any code.
+So I wanted a demo that used both. I had seen a lot of game demos by then, and Mario is where it clicked. If you've played games, you know what it's like to die and lose twenty minutes of progress. What about a game where the main character never dies?
 
 ## how it works
 
