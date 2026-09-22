@@ -3,6 +3,8 @@ description: Notes on building things, lessons learned, and the occasional rant.
 url: https://appcypher.dev
 baseurl: ""
 author: appcypher
+twitter: theappcypher   # used for twitter:creator
+# og_image: /assets/og-default.png   # site-wide link preview image; per-post `image:` overrides it
 markdown: kramdown
 kramdown:
   input: GFM

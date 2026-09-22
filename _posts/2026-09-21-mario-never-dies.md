@@ -3,6 +3,8 @@ title: Mario never dies
 description: I gave Mario a multiverse. Every death branches into four timelines, and only the one that survives becomes canon.
 cover: stephen
 cover_art: mario-never-dies
+image: /assets/posts/mario-never-dies/og-card.png
+image_alt: Four labeled copies of Mario running the same moment of World 1-1 side by side.
 tags: [microsandbox, snapshots, games]
 ---
 Last week I built a version of Super Mario Bros where Mario can't really die. The game runs inside a VM that I can freeze and copy at any moment, and Jev, a System One model from TypeSafe AI, is the one playing. When Mario dies, the VM winds back a couple of seconds and splits into four copies, each one trying something different. Whichever one survives becomes the game from then on. It's called [Mario Never Dies](https://github.com/superradcompany/mario-never-dies), and it started the way a lot of my projects start, with me scrolling X and seeing something I had to try myself.
