@@ -1,5 +1,5 @@
 ---
-title: Mario never dies
+title: Mario Never Dies
 description: I gave Mario a multiverse. Every death branches into four timelines, and only the one that survives becomes canon.
 cover: stephen
 cover_art: mario-never-dies
