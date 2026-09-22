@@ -78,6 +78,16 @@ The site is called Cypher Rants; the author is Stephen Akinyemi (appcypher), who
 
 Do not invent facts, biography, quotes, benchmarks or events. If a post needs a number, the author supplies it or the post says it doesn't have one. If a post is about a system, link the code.
 
+## OpenGraph card
+
+A post can carry `image: /assets/posts/<slug>/og-card.png` (1200×630) for link previews. Cards are plain HTML in `tools/og/<slug>.html` — khaki, the title in Patrick Hand, a rule, `appcypher.dev`, one image on the right — rendered with headless Chrome:
+
+```sh
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --disable-gpu --hide-scrollbars --no-first-run --virtual-time-budget=6000 --window-size=1200,630 --screenshot=assets/posts/<slug>/og-card.png "file://$PWD/tools/og/<slug>.html"
+```
+
+Title only on the card; the description belongs in `og:description`, not baked into pixels.
+
 ## Publishing checklist
 
 1. Build with drafts and look at it: `GEM_HOME="$PWD/vendor/gems" GEM_PATH="$PWD/vendor/gems" JEKYLL_NO_BUNDLER_REQUIRE=true /opt/homebrew/opt/ruby/bin/ruby vendor/gems/bin/jekyll build --destination preview --strict_front_matter --drafts` then serve `preview/` (e.g. `python3 -m http.server -d preview 4000`). `bundle exec jekyll serve --drafts` works if Bundler is set up.
